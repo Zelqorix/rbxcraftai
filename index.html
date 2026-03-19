@@ -24,14 +24,14 @@ button{cursor:pointer;font-family:inherit;border:none;background:none}
 textarea,input,select{font-family:inherit;color:var(--text);background:none;border:none;outline:none}
 ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:2px}
 a{text-decoration:none}
- 
+
 /* PAGES */
 .pg{display:none}.pg.on{display:block}
 #pb{display:none}#pb.on{display:flex;flex-direction:column;height:100vh;overflow:hidden}
 #pl{display:none}#pl.on{display:flex;flex-direction:column;height:100vh;overflow:hidden}
 #pf{display:none}#pf.on{display:flex;flex-direction:column;height:100vh;overflow:hidden}
 #ps{display:none}#ps.on{display:flex;flex-direction:column;height:100vh;overflow:hidden}
- 
+
 /* ════════ NAV ════════ */
 #nav{
   position:fixed;top:0;left:0;right:0;z-index:500;height:58px;
@@ -81,10 +81,10 @@ a{text-decoration:none}
   padding:7px 16px;border-radius:8px;transition:all .15s;
 }
 .launch-btn:hover{transform:translateY(-1px);box-shadow:var(--glow-g)}
- 
+
 /* ════════ HOME ════════ */
 #ph{padding-top:58px}
- 
+
 /* HERO */
 .hero{
   min-height:calc(100vh - 58px);display:flex;flex-direction:column;
@@ -109,7 +109,7 @@ a{text-decoration:none}
 .o3{top:15%;left:0%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(192,132,252,.07),transparent 60%);animation:pulse1 12s ease-in-out infinite}
 @keyframes pulse1{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
 @keyframes pulse2{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.9;transform:scale(1.08)}}
- 
+
 .badge{
   display:inline-flex;align-items:center;gap:8px;
   font-family:var(--FM);font-size:10px;letter-spacing:2px;text-transform:uppercase;
@@ -161,7 +161,7 @@ a{text-decoration:none}
 }
 .h-tt:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,0,80,.35)}
 .h-tt svg{width:18px;height:18px;fill:currentColor}
- 
+
 /* STATS */
 .hstats{
   display:flex;margin-top:60px;
@@ -173,7 +173,7 @@ a{text-decoration:none}
 .hs:not(:last-child)::after{content:'';position:absolute;right:0;top:18%;height:64%;width:1px;background:rgba(255,255,255,.07)}
 .hsn{font-family:var(--FD);font-size:20px;font-weight:900;background:linear-gradient(135deg,var(--g),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hsl{font-family:var(--FM);font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-top:4px;text-transform:uppercase}
- 
+
 /* SCROLL INDICATOR */
 .scroll-ind{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;animation:bounce 2s ease-in-out infinite}
 .scroll-ind-line{width:1px;height:40px;background:linear-gradient(to bottom,transparent,var(--g));animation:grow 2s ease-in-out infinite}
@@ -181,7 +181,7 @@ a{text-decoration:none}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 @keyframes grow{0%,100%{height:20px;opacity:.3}50%{height:40px;opacity:1}}
 @keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
- 
+
 /* ─── QUICK LAUNCH STRIP ─── */
 .ql-strip{
   padding:0 20px;background:var(--bg1);
@@ -197,7 +197,7 @@ a{text-decoration:none}
 }
 .ql-chip:hover{transform:translateY(-2px)}
 .ql-chip .ci{font-size:16px}
- 
+
 /* ─── SHOWCASE SECTION ─── */
 .showcase{padding:80px 20px;background:var(--bg);position:relative;overflow:hidden}
 .showcase::before{content:'';position:absolute;top:50%;left:-10%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(0,255,170,.05),transparent 65%);border-radius:50%;pointer-events:none;filter:blur(40px)}
@@ -250,7 +250,7 @@ a{text-decoration:none}
 .rbx-grad-demo{border-radius:8px;padding:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
 .rbx-grad-lbl{font-family:var(--FM);font-size:8px;color:var(--m2);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
 .rbx-grad-bar{height:6px;border-radius:3px;background:linear-gradient(90deg,#ff0050,#ff8c42,#fbbf24,#00ffaa,#4d9eff,#c084fc)}
- 
+
 /* ─── FEATURES ─── */
 .features{padding:80px 20px;background:var(--bg1);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
 .fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-top:36px}
@@ -266,7 +266,7 @@ a{text-decoration:none}
 .fcd{font-size:12px;color:var(--m2);line-height:1.65}
 .ftags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
 .ft{font-family:var(--FM);font-size:9px;padding:2px 7px;border-radius:20px;text-transform:uppercase}
- 
+
 /* ─── TIKTOK SECTION ─── */
 .tt-section{
   padding:80px 20px;background:var(--bg);
@@ -292,7 +292,7 @@ a{text-decoration:none}
 .tt-card-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,0,80,.4)}
 .tt-card-btn svg{width:20px;height:20px;fill:currentColor}
 .tt-handle{font-family:var(--FM);font-size:11px;color:var(--m2);margin-top:14px}
- 
+
 /* ─── FOOTER ─── */
 #hfoot{
   background:var(--bg1);border-top:1px solid var(--bdr);
@@ -304,7 +304,7 @@ a{text-decoration:none}
 .foot-links{display:flex;gap:12px}
 .foot-link{font-family:var(--FM);font-size:10px;color:var(--m2);cursor:pointer;transition:color .14s}
 .foot-link:hover{color:var(--g)}
- 
+
 /* ════════ BUILDER ════════ */
 .bnav{
   display:flex;align-items:center;padding:0 14px;height:50px;flex-shrink:0;
@@ -351,7 +351,7 @@ a{text-decoration:none}
 .sb-share{display:flex;align-items:center;gap:7px;margin:4px 5px;padding:7px 10px;border-radius:8px;background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);cursor:pointer;transition:all .15s}
 .sb-share:hover{border-color:rgba(251,191,36,.4);transform:translateY(-1px)}
 .sb-share-txt{font-family:var(--FM);font-size:9px;letter-spacing:.5px;color:var(--y);text-transform:uppercase}
- 
+
 /* CHAT */
 .bchat{flex:1;display:flex;flex-direction:column;overflow:hidden}
 .cout{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:14px}
@@ -368,7 +368,7 @@ a{text-decoration:none}
 .echips{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:8px}
 .echip{font-family:var(--FM);font-size:9px;padding:5px 12px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--bdr2);color:var(--m2);cursor:pointer;transition:all .12s}
 .echip:hover{border-color:var(--g);color:var(--g)}
- 
+
 /* MESSAGES */
 .msgu{
   align-self:flex-end;max-width:76%;
@@ -390,7 +390,7 @@ a{text-decoration:none}
 }
 .atxt strong{color:var(--text);font-weight:600}
 .atxt code{font-family:var(--FM);font-size:10px;background:rgba(255,255,255,.06);border:1px solid var(--bdr2);padding:1px 5px;border-radius:3px;color:#7ee8a2}
- 
+
 /* PLACEMENT BADGE */
 .placement{display:inline-flex;align-items:center;gap:4px;font-family:var(--FM);font-size:9px;letter-spacing:.4px;text-transform:uppercase;padding:2px 7px;border-radius:20px}
 .pl-ss{background:rgba(0,255,170,.08);color:var(--g);border:1px solid rgba(0,255,170,.2)}
@@ -400,7 +400,7 @@ a{text-decoration:none}
 .pl-sg{background:rgba(244,114,182,.08);color:var(--pk);border:1px solid rgba(244,114,182,.2)}
 .pl-ms{background:rgba(34,211,238,.08);color:var(--c);border:1px solid rgba(34,211,238,.2)}
 .pl-ws{background:rgba(255,140,66,.08);color:var(--o);border:1px solid rgba(255,140,66,.2)}
- 
+
 /* CODE CARD */
 .ccard{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);transition:border-color .15s}
 .ccard:hover{border-color:rgba(0,255,170,.2)}
@@ -430,14 +430,14 @@ a{text-decoration:none}
 .script-sep{display:flex;align-items:center;gap:8px;padding:4px 0}
 .script-sep-line{flex:1;height:1px;background:rgba(255,255,255,.06)}
 .script-sep-txt{font-family:var(--FM);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
- 
+
 /* LOADING */
 .loading{display:flex;align-items:center;gap:8px;padding:4px 0}
 .ld{display:flex;gap:3px}.ld span{width:6px;height:6px;border-radius:50%;background:var(--g);animation:ldp 1.2s ease-in-out infinite}
 .ld span:nth-child(2){animation-delay:.15s}.ld span:nth-child(3){animation-delay:.3s}
 @keyframes ldp{0%,80%,100%{transform:scale(.6);opacity:.2}40%{transform:scale(1);opacity:1}}
 .ldt{font-family:var(--FM);font-size:11px;color:var(--muted)}
- 
+
 /* INPUT */
 .ciw{padding:12px 18px;border-top:1px solid var(--bdr);display:flex;flex-direction:column;gap:7px;flex-shrink:0;background:var(--bg)}
 .ibox{
@@ -462,7 +462,7 @@ a{text-decoration:none}
   color:var(--muted);padding:3px 9px;border-radius:20px;cursor:pointer;transition:all .12s;
 }
 .mod:hover{border-color:var(--o);color:var(--o);background:rgba(255,140,66,.05)}
- 
+
 /* ════════ LIBRARY ════════ */
 .lib-top{padding:16px 20px 12px;border-bottom:1px solid var(--bdr);flex-shrink:0;display:flex;align-items:center;gap:10px;background:var(--bg1)}
 .lib-title{font-family:var(--FD);font-size:13px;font-weight:900;letter-spacing:2px}
@@ -481,7 +481,7 @@ a{text-decoration:none}
 .lib-code{display:none}.lib-code.open{display:block}
 .lib-code pre{margin:0;font-size:11px;line-height:1.6}
 .lib-code pre code.hljs{background:rgba(0,0,0,.6)!important;padding:11px 13px!important;display:block;overflow-x:auto;max-height:200px}
- 
+
 /* ════════ COMMUNITY SHOWCASE ════════ */
 #ps{background:var(--bg);padding-top:58px}
 .cs-wrap{flex:1;overflow-y:auto;padding:0}
@@ -505,7 +505,7 @@ a{text-decoration:none}
 .cs-stats{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
 .cs-stat{display:flex;align-items:center;gap:8px;font-family:var(--FM);font-size:11px;color:var(--m2)}
 .cs-stat-num{font-family:var(--FD);font-size:16px;font-weight:900;color:var(--g)}
- 
+
 /* SHARE MODAL */
 .modal-overlay{
   position:fixed;inset:0;z-index:600;
@@ -561,7 +561,7 @@ a{text-decoration:none}
   padding:13px;border-radius:9px;transition:all .18s;margin-top:4px;
 }
 .msubmit:hover{transform:translateY(-1px);box-shadow:var(--glow-g)}
- 
+
 /* SHOWCASE GRID */
 .cs-grid{padding:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
 .cs-filters{display:flex;gap:7px;padding:16px 24px;border-bottom:1px solid var(--bdr);flex-wrap:wrap;background:var(--bg1)}
@@ -575,7 +575,7 @@ a{text-decoration:none}
 .cs-empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
 .cs-empty-icon{font-size:48px;margin-bottom:14px;opacity:.4}
 .cs-empty-txt{font-family:var(--FM);font-size:12px;line-height:1.6}
- 
+
 /* SHOWCASE CARD */
 .sc-card{
   background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);
@@ -608,7 +608,7 @@ a{text-decoration:none}
 .sc-like{font-family:var(--FM);font-size:9px;letter-spacing:.4px;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid rgba(244,114,182,.2);color:var(--pk);cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:4px}
 .sc-like:hover{background:rgba(244,114,182,.07)}
 .sc-like.liked{background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.4)}
- 
+
 /* ════════ FEEDBACK ════════ */
 #pf{background:var(--bg);padding-top:58px}
 .fb-wrap{flex:1;overflow-y:auto;padding:40px 20px}
@@ -651,17 +651,17 @@ a{text-decoration:none}
 .fb-item-date{font-family:var(--FM);font-size:9px;color:var(--muted);margin-left:auto}
 .fb-item-txt{font-size:12px;color:var(--m2);line-height:1.65}
 .fb-empty{font-family:var(--FM);font-size:11px;color:var(--muted);text-align:center;padding:18px}
- 
+
 /* TOAST */
 .toast{position:fixed;bottom:24px;right:24px;z-index:9999;font-family:var(--FM);font-size:11px;letter-spacing:.5px;background:var(--bg3);border:1px solid rgba(0,255,170,.2);color:var(--text);padding:10px 18px;border-radius:10px;opacity:0;transform:translateY(10px);transition:all .25s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.4)}
 .toast.show{opacity:1;transform:translateY(0)}
- 
+
 @media(max-width:740px){.nlinks{display:none}#nav{padding:0 12px}.bsb{display:none}.hstats{flex-wrap:wrap}.hs::after{display:none}.showcase-grid{grid-template-columns:1fr}.cs-grid{grid-template-columns:1fr}.modal{padding:22px}}
 </style>
 </head>
 <body>
 <div class="toast" id="toast"></div>
- 
+
 <!-- SHARE MODAL -->
 <div class="modal-overlay" id="share-modal">
   <div class="modal">
@@ -700,7 +700,7 @@ a{text-decoration:none}
     <button class="msubmit" onclick="submitShare()">Share with Community ⚡</button>
   </div>
 </div>
- 
+
 <!-- NAV -->
 <nav id="nav">
   <div class="logo" onclick="goHome()">RbxCraft·AI</div>
@@ -721,7 +721,7 @@ a{text-decoration:none}
     <button class="launch-btn" onclick="goBuilder()">Launch ⚡</button>
   </div>
 </nav>
- 
+
 <!-- ═══════ HOME ═══════ -->
 <div id="ph" class="pg on">
   <div class="hero">
@@ -750,7 +750,7 @@ a{text-decoration:none}
     </div>
     <div class="scroll-ind"><div class="scroll-ind-txt">Scroll</div><div class="scroll-ind-line"></div></div>
   </div>
- 
+
   <!-- QUICK LAUNCH STRIP -->
   <div class="ql-strip">
     <span style="font-family:var(--FM);font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;flex-shrink:0">Quick Launch:</span>
@@ -763,7 +763,7 @@ a{text-decoration:none}
     <button class="ql-chip" onclick="launchMode('module')" style="color:var(--c);border-color:rgba(34,211,238,.25);background:rgba(34,211,238,.06)"><span class="ci">📦</span>Modules</button>
     <button class="ql-chip" onclick="launchMode('gamepass')" style="color:var(--r);border-color:rgba(248,113,113,.25);background:rgba(248,113,113,.06)"><span class="ci">💎</span>Gamepass</button>
   </div>
- 
+
   <!-- SHOWCASE PREVIEW -->
   <div class="showcase">
     <div class="si">
@@ -806,7 +806,7 @@ a{text-decoration:none}
       </div>
     </div>
   </div>
- 
+
   <!-- COMMUNITY CTA -->
   <div style="padding:80px 20px;background:var(--bg1);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);text-align:center;position:relative;overflow:hidden">
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(77,158,255,.05),transparent);pointer-events:none"></div>
@@ -820,7 +820,7 @@ a{text-decoration:none}
       </div>
     </div>
   </div>
- 
+
   <!-- TIKTOK -->
   <div class="tt-section">
     <div class="tt-card">
@@ -834,7 +834,7 @@ a{text-decoration:none}
       <div class="tt-handle">tiktok.com/@zelqorix01</div>
     </div>
   </div>
- 
+
   <div id="hfoot">
     <div class="flogo">RbxCraft·AI</div>
     <div class="foot-links">
@@ -846,20 +846,17 @@ a{text-decoration:none}
     <div class="fnote">Powered by Claude · Not affiliated with Roblox Corporation</div>
   </div>
 </div>
- 
+
 <!-- ═══════ BUILDER ═══════ -->
 <div id="pb" class="pg">
- 
-  <!-- API KEY BANNER -->
-  <div id="api-banner" style="background:linear-gradient(135deg,rgba(0,255,170,.08),rgba(77,158,255,.06));border-bottom:1px solid rgba(0,255,170,.2);padding:10px 20px;display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap">
-    <span style="font-size:16px">🤗</span>
-    <div style="flex:1;min-width:200px">
-      <div style="font-family:var(--FM);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--g);margin-bottom:3px">Powered by HuggingFace — Free AI</div>
-      <div style="font-size:11px;color:var(--m2)">Token saved ✓ — ready to generate Roblox code!</div>
-    </div>
-    <div style="font-family:var(--FM);font-size:10px;color:var(--g);background:rgba(0,255,170,.08);border:1px solid rgba(0,255,170,.2);padding:5px 14px;border-radius:20px">✓ Connected</div>
+
+  <!-- FREE AI BANNER -->
+  <div id="api-banner" style="background:linear-gradient(135deg,rgba(0,255,170,.08),rgba(77,158,255,.06));border-bottom:1px solid rgba(0,255,170,.2);padding:8px 20px;display:flex;align-items:center;gap:10px;flex-shrink:0">
+    <span style="font-size:14px">⚡</span>
+    <div style="font-family:var(--FM);font-size:10px;letter-spacing:1px;color:var(--g)">Powered by Pollinations.AI — 100% Free · No signup needed · Just generate!</div>
+    <div style="margin-left:auto;font-family:var(--FM);font-size:9px;color:var(--g);background:rgba(0,255,170,.08);border:1px solid rgba(0,255,170,.2);padding:3px 12px;border-radius:20px">✓ Ready</div>
   </div>
- 
+
   <div class="bnav">
     <div class="mtabs">
       <button class="mtab on" data-m="gui"       onclick="sw('gui',this)"><span class="mi">🖥️</span>GUI</button>
@@ -923,7 +920,7 @@ a{text-decoration:none}
     </div>
   </div>
 </div>
- 
+
 <!-- ═══════ LIBRARY ═══════ -->
 <div id="pl" class="pg">
   <div class="lib-top">
@@ -934,7 +931,7 @@ a{text-decoration:none}
   </div>
   <div id="lib-body" class="lib-grid"></div>
 </div>
- 
+
 <!-- ═══════ COMMUNITY SHOWCASE ═══════ -->
 <div id="ps" class="pg">
   <div class="cs-wrap">
@@ -960,7 +957,7 @@ a{text-decoration:none}
     <div class="cs-grid" id="cs-grid"></div>
   </div>
 </div>
- 
+
 <!-- ═══════ FEEDBACK ═══════ -->
 <div id="pf" class="pg">
   <div class="fb-wrap">
@@ -1013,20 +1010,18 @@ a{text-decoration:none}
     </div>
   </div>
 </div>
- 
+
 <script>
 /* ═══════════════════════════════════════════
-   HUGGINGFACE API — FREE
+   POLLINATIONS.AI — 100% FREE, NO KEY NEEDED
 ═══════════════════════════════════════════ */
-const HF_TOKEN = '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'
-const HF_MODEL = 'Qwen/Qwen2.5-72B-Instruct'
-const HF_URL = 'https://api-inference.huggingface.co/v1/chat/completions'
- 
+const AI_URL = 'https://text.pollinations.ai/'
+
 function saveKey(val){}
 function toggleKeyVis(){}
 function dismissBanner(){}
-function getKey(){return HF_TOKEN}
- 
+function getKey(){return ''}
+
 /* ═══════════════════════════════════════════
    ROBLOX SCRIPT LOCATIONS REFERENCE
    Scripts go in different places depending on type:
@@ -1039,15 +1034,15 @@ function getKey(){return HF_TOKEN}
    • Tool scripts → inside Tool in StarterPack or Workspace
    • Character scripts → StarterCharacterScripts
 ═══════════════════════════════════════════ */
- 
+
 /* ═══════════════════════════════════════════
    AI SYSTEM PROMPTS
 ═══════════════════════════════════════════ */
 const SYS={
 gui:(cx)=>`You are the world's best Roblox GUI developer. Create interfaces that look like they belong in top Roblox games.
- 
+
 QUALITY: ${cx==='hard'?`AAA ULTRA — Use these exact Roblox techniques:
- 
+
 GRADIENT BUTTONS:
   local grad = Instance.new("UIGradient")
   grad.Color = ColorSequence.new({
@@ -1057,7 +1052,7 @@ GRADIENT BUTTONS:
   })
   grad.Rotation = 45
   grad.Parent = button
- 
+
 STUD TEXTURE BG:
   local studBg = Instance.new("ImageLabel")
   studBg.Image = "rbxassetid://6372755229"
@@ -1067,7 +1062,7 @@ STUD TEXTURE BG:
   studBg.BackgroundTransparency = 1
   studBg.Size = UDim2.new(1,0,1,0)
   studBg.ZIndex = 0
- 
+
 GLOW with ImageLabel:
   local glow = Instance.new("ImageLabel")
   glow.Image = "rbxassetid://5028857084"
@@ -1076,11 +1071,11 @@ GLOW with ImageLabel:
   glow.BackgroundTransparency = 1
   glow.ImageTransparency = 0.4
   glow.ImageColor3 = Color3.fromRGB(0,255,170)
- 
+
 SPRING ANIMATIONS:
   TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
   TweenInfo.new(0.5, Enum.EasingStyle.Elastic, Enum.EasingDirection.Out)
- 
+
 DARK CARD with gradient:
   frame.BackgroundColor3 = Color3.fromRGB(12,12,22)
   local g = Instance.new("UIGradient")
@@ -1091,7 +1086,7 @@ DARK CARD with gradient:
   g.Rotation = 135
   g.Parent = frame`
   :'CLEAN — Beautiful GUI with UIGradient, UICorner, UIStroke, smooth tweens, good colors.'}
- 
+
 RULES:
 1. COMPLETE CODE — every line written, zero placeholders
 2. ⚠️ CORRECT PLACEMENT: A LocalScript that creates a ScreenGui goes in ONE of these places:
@@ -1106,19 +1101,19 @@ RULES:
 5. task.wait() never wait()
 6. UICorner on all frames | TweenService hover+click on all buttons
 7. Parent ScreenGui to: game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
- 
+
 FORMAT: ✅ What was built | 📁 Exact placement | COMPLETE code`,
- 
+
 script:(cx)=>`You are an expert Roblox scripter. Write COMPLETE scripts — each in its own SEPARATE code block.
- 
+
 QUALITY: ${cx==='hard'?'ADVANCED — full server+client split, RemoteEvents, server validation.':'CLEAN — readable, fully working.'}
- 
+
 CRITICAL — CORRECT SCRIPT LOCATIONS:
 Every Roblox script type has a specific correct location. Use the right one:
- 
+
 📍 Script (server-side code) → ServerScriptService
    -- ✅ PLACE IN: ServerScriptService > New Script → rename to "CombatServer"
- 
+
 📍 LocalScript (client-side, runs for each player) → depends on purpose:
    - General game logic → StarterPlayerScripts > New LocalScript
    - Character-related (jumps, movement, animations) → StarterCharacterScripts > New LocalScript
@@ -1126,29 +1121,29 @@ Every Roblox script type has a specific correct location. Use the right one:
    -- ✅ PLACE IN: StarterPlayerScripts > New LocalScript → rename to "CombatClient"
    -- ✅ PLACE IN: StarterCharacterScripts > New LocalScript → rename to "JumpScript"
    -- ✅ PLACE IN: StarterGui > New LocalScript → rename to "ShopGui"
- 
+
 📍 ModuleScript (reusable code required by other scripts):
    - Shared (server + client) → ReplicatedStorage > Modules > New ModuleScript
    - Server only → ServerScriptService > Modules > New ModuleScript
    -- ✅ PLACE IN: ReplicatedStorage > Modules > New ModuleScript → rename to "CombatModule"
- 
+
 📍 RemoteEvent / RemoteFunction → ReplicatedStorage > Remotes folder
    (Create a Script in ServerScriptService that creates these in ReplicatedStorage > Remotes)
- 
+
 📍 Tool script → inside the Tool in StarterPack or Workspace
    -- ✅ PLACE IN: StarterPack > YourTool > New Script → rename to "ToolScript"
- 
+
 📍 ScreenGui → StarterGui (NOT StarterPlayerScripts)
    -- ✅ PLACE IN: StarterGui > New ScreenGui
- 
+
 RULES: Each script in its OWN separate lua code block | task.wait() always | game:GetService() always | server validates all client data | pcall() on DataStore/HTTP
- 
+
 FORMAT: ✅ Built | 📁 File list with CORRECT locations | Each script in its own code block`,
- 
+
 system:(cx)=>`You are a senior Roblox architect. Write COMPLETE game systems — each file in its own SEPARATE code block.
- 
+
 QUALITY: ${cx==='hard'?'ADVANCED — ModuleScript + server + client, RemoteEvents, DataStore.':'CLEAN — 2-3 separate files.'}
- 
+
 CORRECT LOCATIONS:
 - ModuleScript (shared) → ReplicatedStorage > Modules > New ModuleScript
   -- ✅ PLACE IN: ReplicatedStorage > Modules > New ModuleScript → rename to "EconomyModule"
@@ -1161,52 +1156,52 @@ CORRECT LOCATIONS:
 - GUI part → StarterGui > New LocalScript
   -- ✅ PLACE IN: StarterGui > New LocalScript → rename to "EconomyGui"
 - RemoteEvents: create a folder called "Remotes" in ReplicatedStorage, put events there
- 
+
 RULES: Every method body fully written | ModuleScript returns table | RemoteEvents in ReplicatedStorage > Remotes | server validates all | task.wait() always | each file in its own code block
- 
+
 FORMAT: ✅ Overview | 📁 File list with correct locations | Each file in its own code block`,
- 
+
 datastore:(cx)=>`You are a DataStore expert. Write COMPLETE save systems — separate files.
- 
+
 QUALITY: ${cx==='hard'?'ADVANCED — retry, auto-save, BindToClose, cache.':'CLEAN — pcall, retry 3x, auto-save, defaults.'}
- 
+
 RULES: pcall every DataStore call | retry 3x with task.wait(2) | auto-save task.spawn loop | PlayerRemoving+BindToClose saves | cache by UserId | merge defaults
- 
+
 FORMAT: ✅ Built | 📁 Files | Each file in its own code block`,
- 
+
 animation:(cx)=>`You are a Roblox VFX expert. Write COMPLETE animation systems.
- 
+
 QUALITY: ${cx==='hard'?'AAA — chained tweens, camera shake, BlurEffect, ColorCorrectionEffect, particles.':'CLEAN — smooth tweens, good EasingStyle.'}
- 
+
 RULES: complete animation functions | TweenService:Create with TweenInfo | reusable functions | task.wait() always
- 
+
 FORMAT: ✅ What was created | 📁 Placement | Complete code`,
- 
+
 debug:(cx)=>`You are an elite debugger. Fix code completely — each fixed file in its own code block.
- 
+
 DEPTH: ${cx==='hard'?'FULL AUDIT — fix all bugs, modernize all APIs, optimize, fix architecture.':'FIX — find all bugs, explain, return complete fixed code.'}
- 
+
 RULES: return complete code | first line: -- ✅ PLACE IN: [location] | mark every change: -- 🔧 FIXED: [what and why] | replace all: wait()→task.wait() game.X→game:GetService("X") :remove()→:Destroy() | add pcall() | fix client-server split
- 
+
 FORMAT: 🐛 Bugs found | 📁 Placement | Each fixed file in its own code block`,
- 
+
 module:(cx)=>`You are a ModuleScript expert. Write COMPLETE reusable APIs.
- 
+
 QUALITY: ${cx==='hard'?'ADVANCED — constructor, events, type checking, Destroy.':'CLEAN — useful methods, fully written.'}
- 
+
 RULES: every method fully written | local Module = {} ... return Module | task.wait() always | usage example as separate code block
- 
+
 FORMAT: ✅ Module + API list | 📁 Placement | Module code block | Example code block`,
- 
+
 gamepass:(cx)=>`You are a monetization expert. Write COMPLETE gamepass systems — separate files.
- 
+
 QUALITY: ${cx==='hard'?'ADVANCED — multi-gamepass, products, ProcessReceipt, DataStore persistence.':'CLEAN — gamepass check + product handler, server-side.'}
- 
+
 RULES: every handler written | server-side only | UserOwnsGamePassAsync in pcall() | ProcessReceipt returns PurchaseGranted | -- REPLACE 000000 WITH YOUR REAL GAMEPASS ID
- 
+
 FORMAT: ✅ Built | 📁 Files | 📝 Where to get IDs | Each file in its own code block`
 }
- 
+
 /* ═══ MODE CONFIGS ═══ */
 const MODES={
   gui:{label:'GUI Builder',icon:'🖥️',desc:'AAA-quality Roblox GUIs with gradients, textures & spring animations.',
@@ -1234,7 +1229,7 @@ const MODES={
     ex:['VIP','2x coins','Full shop','ProcessReceipt'],
     prompts:['VIP perks speed jump look separate','2x coins product handler','Shop 4 gamepass buttons','Multiple gamepasses perks','Product coin bundles 100 500 2000','ProcessReceipt all products','Gamepass DataStore persistence','Auto-apply perks on spawn','Free VIP admin list','Full monetization shop UI']}
 }
- 
+
 /* ═══ STATE ═══ */
 let mode='gui', cx='simple', busy=false
 const hist={gui:[],script:[],system:[],datastore:[],animation:[],debug:[],module:[],gamepass:[]}
@@ -1252,7 +1247,7 @@ const TYPE_CFG={
   other:{label:'Other',color:'var(--y)',bg:'rgba(251,191,36,.08)',border:'rgba(251,191,36,.2)'}
 }
 const AVATARBGS=['linear-gradient(135deg,#00ffaa,#4d9eff)','linear-gradient(135deg,#f472b6,#c084fc)','linear-gradient(135deg,#fbbf24,#f97316)','linear-gradient(135deg,#22d3ee,#4d9eff)','linear-gradient(135deg,#00ffaa,#c084fc)','linear-gradient(135deg,#f87171,#f472b6)']
- 
+
 /* ═══ PLACEMENT BADGE ═══ */
 function pBadge(code){
   const l=(code.split('\n')[0]||'').toLowerCase()
@@ -1265,7 +1260,7 @@ function pBadge(code){
   if(l.includes('modulescript')||l.includes('module'))return{c:'pl-ms',t:'🩵 ModuleScript'}
   return null
 }
- 
+
 /* ═══ NAV ═══ */
 function setNl(id){['nl0','nl1','nl2','nl3','nl4'].forEach(n=>document.getElementById(n).classList.remove('on'));document.getElementById(id).classList.add('on')}
 function showPg(id){
@@ -1281,7 +1276,7 @@ function goShowcase(){showPg('ps');setNl('nl2');renderShowcase()}
 function goLib(){showPg('pl');setNl('nl3');renderLib()}
 function goFeedback(){showPg('pf');setNl('nl4');renderFbWall()}
 function launchMode(m){showPg('pb');setNl('nl1');const btn=document.querySelector('.mtab[data-m="'+m+'"]');if(btn)sw(m,btn);document.getElementById('mi').focus()}
- 
+
 /* ═══ MODE ═══ */
 function sw(m,btn){
   mode=m
@@ -1294,7 +1289,7 @@ function setCx(c){
   document.getElementById('cxs').classList.toggle('on',c==='simple')
   document.getElementById('cxh').classList.toggle('on',c==='hard')
 }
- 
+
 /* ═══ SIDEBAR ═══ */
 function renderSidebar(){
   const c=document.getElementById('sbp');c.innerHTML=''
@@ -1303,7 +1298,7 @@ function renderSidebar(){
     b.onclick=()=>{document.getElementById('mi').value=p;send()};c.appendChild(b)
   })
 }
- 
+
 /* ═══ CHAT ═══ */
 function renderChat(){
   const co=document.getElementById('co');co.innerHTML=''
@@ -1320,13 +1315,13 @@ function renderEmpty(co){
 }
 function clearChat(){hist[mode]=[];renderChat()}
 function rmEmpty(){const e=document.getElementById('ewrap');if(e)e.remove()}
- 
+
 /* ═══ APPEND USER ═══ */
 function appendU(text,co,scroll=true){
   const d=document.createElement('div');d.className='msgu';d.textContent=text
   co.appendChild(d);if(scroll)co.scrollTop=co.scrollHeight
 }
- 
+
 /* ═══ APPEND AI ═══ */
 function appendA(text,co,scroll=true){
   const wrap=document.createElement('div');wrap.className='msga'
@@ -1384,32 +1379,31 @@ function appendA(text,co,scroll=true){
   })
   co.appendChild(wrap);if(scroll)co.scrollTop=co.scrollHeight
 }
- 
+
 /* ═══ EXPLAIN ═══ */
 async function toggleExp(btn){
   const uid=btn.dataset.uid,panel=document.getElementById('ep-'+uid)
   if(panel.classList.contains('open')){panel.classList.remove('open');btn.textContent='Explain';return}
   btn.textContent='...'
   try{
-    const res=await fetch(HF_URL,{
+    const res=await fetch(AI_URL,{
       method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+HF_TOKEN},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        model:HF_MODEL,
+        model:'openai',
         messages:[
           {role:'system',content:'You explain Roblox Lua code simply for beginners. Be concise and clear.'},
           {role:'user',content:`Explain this Roblox Lua code simply. What it does, how it works, key concepts.\n\n\`\`\`lua\n${btn.dataset.code}\n\`\`\``}
         ],
-        max_tokens:500,stream:false
+        seed:42,private:true
       })
     })
-    const data=await res.json()
-    const txt=data.choices?.[0]?.message?.content||'Could not explain.'
+    const txt=await res.text()
     panel.innerHTML=`<div class="exp-head">📖 Explanation</div>${txt.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/`([^`]+)`/g,'<code>$1</code>')}`
     panel.classList.add('open');btn.textContent='Hide'
   }catch(e){panel.innerHTML='<div class="exp-head">Error</div>'+e.message;panel.classList.add('open');btn.textContent='Explain'}
 }
- 
+
 /* ═══ SAVE / DL / COPY ═══ */
 function saveScript(btn){
   const code=btn.dataset.code,name=btn.dataset.name||'Script'
@@ -1428,7 +1422,7 @@ function cpCode(btn){
     btn.textContent='Copied!';btn.classList.add('done');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('done')},2000)
   })
 }
- 
+
 /* ═══ SEND ═══ */
 async function send(){
   if(busy)return
@@ -1446,35 +1440,31 @@ async function send(){
   try{
     const msgs=hist[mode].slice(0,-1).map(h=>({role:h.role,content:h.content}))
     msgs.push({role:'user',content:prompt})
-    const res=await fetch(HF_URL,{
+    const res=await fetch(AI_URL,{
       method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'Authorization':'Bearer '+HF_TOKEN
-      },
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        model:HF_MODEL,
+        model:'openai',
         messages:[{role:'system',content:SYS[mode](cx)},...msgs],
-        max_tokens:4000,
-        stream:false
+        seed:42,
+        private:true
       })
     })
-    const data=await res.json()
+    const aiText=await res.text()
     ld.remove()
-    if(data.error)throw new Error(JSON.stringify(data.error))
-    const aiText=data.choices?.[0]?.message?.content||'No response.'
+    if(!aiText||aiText.trim()==='')throw new Error('No response from AI')
     hist[mode].push({role:'assistant',content:aiText})
     appendA(aiText,co)
   }catch(e){
     ld.remove()
     const err=document.createElement('div');err.className='atxt'
     err.style.cssText='border-left-color:rgba(248,113,113,.5);color:var(--r)'
-    err.textContent='⚠ Error: '+e.message
+    err.textContent='⚠ Error: '+e.message+' — please try again'
     co.appendChild(err);co.scrollTop=co.scrollHeight
   }
   busy=false;document.getElementById('isend').disabled=false;inp.focus()
 }
- 
+
 /* ═══ LIBRARY ═══ */
 function renderLib(){
   const body=document.getElementById('lib-body')
@@ -1503,7 +1493,7 @@ function delLib(e,idx){e.stopPropagation();library.splice(idx,1);localStorage.se
 function dlLib(e,idx){e.stopPropagation();const i=library[idx];const n=(i.name||'script').replace(/[^a-z0-9_\- ]/gi,'_').replace(/\s+/g,'_');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([i.code],{type:'text/plain'}));a.download=n+'.lua';a.click();showToast('Downloaded!')}
 function cpLib(e,idx){e.stopPropagation();navigator.clipboard.writeText(library[idx].code).then(()=>showToast('Copied!'))}
 function clearLib(){if(!confirm('Clear all saved scripts?'))return;library=[];localStorage.setItem('rbxcraft_lib','[]');renderLib();showToast('Cleared')}
- 
+
 /* ═══ SHARE MODAL ═══ */
 function openModal(){
   document.getElementById('share-modal').classList.add('open')
@@ -1517,7 +1507,7 @@ function openModalWithCode(btn){
 }
 function closeModal(){document.getElementById('share-modal').classList.remove('open')}
 document.getElementById('share-modal').addEventListener('click',e=>{if(e.target===document.getElementById('share-modal'))closeModal()})
- 
+
 function submitShare(){
   const name=document.getElementById('sh-name').value.trim()
   const title=document.getElementById('sh-title').value.trim()
@@ -1543,7 +1533,7 @@ function submitShare(){
   showToast('🚀 Shared with the community!')
   if(document.getElementById('ps').classList.contains('on'))renderShowcase()
 }
- 
+
 /* ═══ SHOWCASE ═══ */
 function filterShowcase(f,btn){
   csFilter=f
@@ -1599,7 +1589,7 @@ function cpShowcase(id,btn){
     btn.textContent='Copied!';btn.classList.add('done');setTimeout(()=>{btn.textContent='Copy Code';btn.classList.remove('done')},2000)
   })
 }
- 
+
 /* ═══ FEEDBACK ═══ */
 function setStar(v){starRating=v;document.querySelectorAll('.star').forEach(s=>s.classList.toggle('lit',parseInt(s.dataset.v)<=v))}
 function hoverStar(v){document.querySelectorAll('.star').forEach(s=>s.style.color=parseInt(s.dataset.v)<=v?'var(--y)':'rgba(255,255,255,.1)')}
@@ -1623,13 +1613,13 @@ function renderFbWall(){
   if(!feedbacks.length){wall.innerHTML='<div class="fb-empty">No feedback yet — be first!</div>';return}
   wall.innerHTML=feedbacks.map(f=>`<div class="fb-item"><div class="fb-item-top"><div class="fb-item-stars">${'★'.repeat(f.stars)}${'☆'.repeat(5-f.stars)}</div><div class="fb-item-name">${esc(f.name)}</div><span class="fb-item-cat">${CATL[f.cat]||f.cat}</span><div class="fb-item-date">${f.date}</div></div><div class="fb-item-txt">${esc(f.msg)}</div></div>`).join('')
 }
- 
+
 /* ═══ UTILS ═══ */
 function amod(t){const i=document.getElementById('mi');i.value=(i.value.trim()+' '+t).trim();i.focus();az(i)}
 function az(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px'}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400)}
 function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
- 
+
 /* ═══ INIT ═══ */
 document.addEventListener('DOMContentLoaded',()=>{
   const inp=document.getElementById('mi')
@@ -1646,4 +1636,3 @@ document.addEventListener('DOMContentLoaded',()=>{
 </script>
 </body>
 </html>
-
