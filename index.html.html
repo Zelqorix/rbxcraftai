@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RbxCraft·AI — Ultimate Roblox Game Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/lua.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#04040a;--bg1:#080812;--bg2:#0e0e1a;--bg3:#141422;--bg4:#1c1c2e;
+  --bdr:rgba(255,255,255,0.055);--bdr2:rgba(255,255,255,0.1);--bdr3:rgba(255,255,255,0.2);
+  --g:#00ffaa;--b:#4d9eff;--o:#ff8c42;--p:#c084fc;--pk:#f472b6;--y:#fbbf24;--r:#f87171;--c:#22d3ee;
+  --text:#edf0ff;--muted:#3a3a58;--m2:#7070a0;
+  --FD:'Orbitron',monospace;--FU:'Rajdhani',sans-serif;--FM:'JetBrains Mono',monospace;
+  --glow-g:0 0 40px rgba(0,255,170,0.2);
+  --glow-b:0 0 40px rgba(77,158,255,0.2);
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--FU);overflow-x:hidden}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+textarea,input,select{font-family:inherit;color:var(--text);background:none;border:none;outline:none}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:2px}
+a{text-decoration:none}
+
+/* PAGES */
+.pg{display:none}.pg.on{display:block}
+#pb{display:none}#pb.on{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+#pl{display:none}#pl.on{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+#pf{display:none}#pf.on{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+#ps{display:none}#ps.on{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+
+/* ════════ NAV ════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;height:58px;
+  display:flex;align-items:center;padding:0 28px;gap:10px;
+  background:rgba(4,4,10,0.95);backdrop-filter:blur(30px);
+  border-bottom:1px solid rgba(0,255,170,0.08);
+}
+.logo{
+  font-family:var(--FD);font-size:15px;font-weight:900;letter-spacing:2px;
+  cursor:pointer;flex-shrink:0;
+  background:linear-gradient(135deg,#00ffaa,#4d9eff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.nlinks{display:flex;gap:2px;margin-left:12px}
+.nl{
+  font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--m2);padding:5px 11px;border-radius:6px;border:1px solid transparent;transition:all .15s;
+}
+.nl:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+.nl.on{color:var(--g);background:rgba(0,255,170,.07);border-color:rgba(0,255,170,.18)}
+.nr{margin-left:auto;display:flex;align-items:center;gap:7px}
+.tt-nav{
+  display:flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;color:#fff;
+  background:linear-gradient(135deg,#010101 0%,#ff0050 100%);
+  padding:6px 13px;border-radius:8px;transition:all .15s;
+}
+.tt-nav:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,0,80,.3)}
+.tt-nav svg{width:12px;height:12px;fill:currentColor}
+.share-nav{
+  display:flex;align-items:center;gap:4px;font-size:10px;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--y);
+  background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);
+  padding:5px 11px;border-radius:8px;transition:all .15s;
+}
+.share-nav:hover{background:rgba(251,191,36,.14);transform:translateY(-1px)}
+.fb-nav{
+  display:flex;align-items:center;gap:4px;font-size:10px;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--p);
+  background:rgba(192,132,252,.08);border:1px solid rgba(192,132,252,.2);
+  padding:5px 11px;border-radius:8px;transition:all .15s;
+}
+.fb-nav:hover{background:rgba(192,132,252,.14);transform:translateY(-1px)}
+.launch-btn{
+  font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  background:linear-gradient(135deg,#00ffaa,#00c8ff);color:#04040a;
+  padding:7px 16px;border-radius:8px;transition:all .15s;
+}
+.launch-btn:hover{transform:translateY(-1px);box-shadow:var(--glow-g)}
+
+/* ════════ HOME ════════ */
+#ph{padding-top:58px}
+
+/* HERO */
+.hero{
+  min-height:calc(100vh - 58px);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:60px 20px;
+  position:relative;overflow:hidden;text-align:center;
+}
+/* Animated grid */
+.hgrid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,255,170,.04)1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,170,.04)1px,transparent 1px);
+  background-size:60px 60px;
+  animation:gridMove 20s linear infinite;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000 30%,transparent 100%);
+}
+@keyframes gridMove{from{background-position:0 0}to{background-position:60px 60px}}
+/* Orbs */
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(60px)}
+.o1{top:-15%;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(0,255,170,.12),transparent 60%);animation:pulse1 8s ease-in-out infinite}
+.o2{bottom:0;right:3%;width:500px;height:400px;background:radial-gradient(ellipse,rgba(77,158,255,.1),transparent 60%);animation:pulse2 10s ease-in-out infinite}
+.o3{top:15%;left:0%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(192,132,252,.07),transparent 60%);animation:pulse1 12s ease-in-out infinite}
+@keyframes pulse1{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
+@keyframes pulse2{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.9;transform:scale(1.08)}}
+
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--FM);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--g);background:rgba(0,255,170,.06);border:1px solid rgba(0,255,170,.2);
+  padding:6px 18px;border-radius:20px;margin-bottom:28px;
+  animation:fu .7s ease both;
+}
+.bdot{width:6px;height:6px;border-radius:50%;background:var(--g);animation:glo 2s ease-in-out infinite}
+@keyframes glo{0%,100%{opacity:1}50%{opacity:.3;box-shadow:0 0 0 6px rgba(0,255,170,.12)}}
+.hh1{
+  font-family:var(--FD);font-weight:900;line-height:.85;margin-bottom:24px;
+  font-size:clamp(38px,9vw,108px);letter-spacing:-2px;
+  animation:fu .7s .06s ease both;
+}
+.hw{display:block;color:var(--text);text-shadow:0 0 80px rgba(0,255,170,.1)}
+.hg{
+  display:block;
+  background:linear-gradient(125deg,#00ffaa 0%,#00e5ff 35%,#4d9eff 65%,#c084fc 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 40px rgba(0,255,170,.3));
+}
+.hd{display:block;color:rgba(255,255,255,.2);font-size:.7em}
+.hsub{
+  font-size:clamp(14px,2vw,19px);color:var(--m2);max-width:600px;line-height:1.65;
+  margin-bottom:40px;font-weight:500;animation:fu .7s .14s ease both;
+}
+.hsub strong{color:var(--text)}
+.hacts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fu .7s .2s ease both}
+.h-cta{
+  font-size:14px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  background:linear-gradient(135deg,#00ffaa,#00c8ff);color:#04040a;
+  padding:14px 34px;border-radius:10px;transition:all .2s;
+  box-shadow:0 4px 30px rgba(0,255,170,.2);
+}
+.h-cta:hover{transform:translateY(-3px);box-shadow:0 12px 50px rgba(0,255,170,.4)}
+.h-ghost{
+  font-size:14px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  background:rgba(255,255,255,.04);color:var(--text);
+  border:1px solid rgba(255,255,255,.12);
+  padding:14px 34px;border-radius:10px;transition:all .2s;
+}
+.h-ghost:hover{border-color:var(--g);color:var(--g);background:rgba(0,255,170,.04)}
+.h-tt{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:14px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+  color:#fff;background:linear-gradient(135deg,#010101,#ff0050);
+  padding:14px 28px;border-radius:10px;transition:all .2s;
+  animation:fu .7s .27s ease both;
+}
+.h-tt:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,0,80,.35)}
+.h-tt svg{width:18px;height:18px;fill:currentColor}
+
+/* STATS */
+.hstats{
+  display:flex;margin-top:60px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;
+  backdrop-filter:blur(10px);animation:fu .7s .36s ease both;
+}
+.hs{padding:18px 32px;text-align:center;position:relative}
+.hs:not(:last-child)::after{content:'';position:absolute;right:0;top:18%;height:64%;width:1px;background:rgba(255,255,255,.07)}
+.hsn{font-family:var(--FD);font-size:20px;font-weight:900;background:linear-gradient(135deg,var(--g),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hsl{font-family:var(--FM);font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-top:4px;text-transform:uppercase}
+
+/* SCROLL INDICATOR */
+.scroll-ind{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;animation:bounce 2s ease-in-out infinite}
+.scroll-ind-line{width:1px;height:40px;background:linear-gradient(to bottom,transparent,var(--g));animation:grow 2s ease-in-out infinite}
+.scroll-ind-txt{font-family:var(--FM);font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+@keyframes grow{0%,100%{height:20px;opacity:.3}50%{height:40px;opacity:1}}
+@keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── QUICK LAUNCH STRIP ─── */
+.ql-strip{
+  padding:0 20px;background:var(--bg1);
+  border-bottom:1px solid var(--bdr);overflow-x:auto;
+  display:flex;gap:10px;align-items:center;
+  padding:16px 24px;scrollbar-width:none;
+}
+.ql-strip::-webkit-scrollbar{display:none}
+.ql-chip{
+  display:flex;align-items:center;gap:8px;flex-shrink:0;
+  font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  padding:10px 18px;border-radius:10px;border:1px solid;transition:all .18s;cursor:pointer;
+}
+.ql-chip:hover{transform:translateY(-2px)}
+.ql-chip .ci{font-size:16px}
+
+/* ─── SHOWCASE SECTION ─── */
+.showcase{padding:80px 20px;background:var(--bg);position:relative;overflow:hidden}
+.showcase::before{content:'';position:absolute;top:50%;left:-10%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(0,255,170,.05),transparent 65%);border-radius:50%;pointer-events:none;filter:blur(40px)}
+.si{max-width:1100px;margin:0 auto}
+.sec-label{font-family:var(--FM);font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+.sec-h{font-family:var(--FD);font-size:clamp(22px,4vw,44px);font-weight:900;line-height:1.05;margin-bottom:12px}
+.sec-sub{font-size:14px;color:var(--m2);max-width:500px;line-height:1.6;margin-bottom:36px}
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.s-left{}
+.s-left p{font-size:14px;color:var(--m2);line-height:1.7;margin-bottom:16px}
+.s-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
+.s-tag{font-family:var(--FM);font-size:9px;padding:3px 10px;border-radius:20px;text-transform:uppercase}
+/* ROBLOX UI MOCK */
+.rbx-mock{
+  background:linear-gradient(135deg,#0d0d1a,#1a1a2e);
+  border:1px solid rgba(255,255,255,.1);border-radius:16px;
+  padding:20px;position:relative;overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.rbx-mock::before{
+  content:'';position:absolute;inset:0;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.015)0px,rgba(255,255,255,.015)1px,transparent 1px,transparent 48px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.015)0px,rgba(255,255,255,.015)1px,transparent 1px,transparent 48px);
+  pointer-events:none;border-radius:16px;
+}
+.rbx-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.rbx-title-wrap{display:flex;align-items:center;gap:8px}
+.rbx-star{color:#ffd700;font-size:14px}
+.rbx-game-title{font-family:var(--FD);font-size:13px;font-weight:900;color:#fff;letter-spacing:.5px}
+.rbx-x{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#ff4444,#ff0000);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:#fff;cursor:pointer;box-shadow:0 2px 8px rgba(255,0,0,.4);flex-shrink:0}
+.rbx-currency{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.rbx-cur{display:flex;align-items:center;gap:5px;border-radius:20px;padding:5px 12px}
+.rbx-cur.coins{background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3)}
+.rbx-cur.gems{background:rgba(100,200,255,.1);border:1px solid rgba(100,200,255,.3)}
+.rbx-cur-icon{font-size:14px}
+.rbx-cur-val{font-family:var(--FD);font-size:12px;font-weight:900}
+.rbx-cur.coins .rbx-cur-val{color:#ffd700;text-shadow:0 0 8px rgba(255,215,0,.4)}
+.rbx-cur.gems .rbx-cur-val{color:#64c8ff;text-shadow:0 0 8px rgba(100,200,255,.4)}
+.rbx-btns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:12px}
+.rbx-btn{border-radius:10px;padding:11px 6px;text-align:center;cursor:pointer;transition:all .15s;border:1px solid rgba(255,255,255,.1);position:relative;overflow:hidden}
+.rbx-btn:hover{transform:scale(1.05);filter:brightness(1.15)}
+.rbx-btn-ico{font-size:20px;display:block;margin-bottom:4px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.6))}
+.rbx-btn-lbl{font-family:var(--FD);font-size:9px;font-weight:900;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.8)}
+.rb1{background:linear-gradient(135deg,#ff6b35,#ff0050)}
+.rb2{background:linear-gradient(135deg,#8B4513,#cd853f)}
+.rb3{background:linear-gradient(135deg,#e91e8c,#ff6b9d)}
+.rb4{background:linear-gradient(135deg,#1565c0,#42a5f5)}
+.rb5{background:linear-gradient(135deg,#f9a825,#ff6f00)}
+.rb6{background:linear-gradient(135deg,#37474f,#78909c)}
+.rbx-grad-demo{border-radius:8px;padding:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.rbx-grad-lbl{font-family:var(--FM);font-size:8px;color:var(--m2);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+.rbx-grad-bar{height:6px;border-radius:3px;background:linear-gradient(90deg,#ff0050,#ff8c42,#fbbf24,#00ffaa,#4d9eff,#c084fc)}
+
+/* ─── FEATURES ─── */
+.features{padding:80px 20px;background:var(--bg1);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-top:36px}
+.fc{
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;padding:22px;transition:all .22s;position:relative;overflow:hidden;
+}
+.fc-accent{position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .25s}
+.fc:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.04)}
+.fc:hover .fc-accent{opacity:1}
+.fi{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px}
+.fct{font-size:14px;font-weight:700;margin-bottom:7px}
+.fcd{font-size:12px;color:var(--m2);line-height:1.65}
+.ftags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.ft{font-family:var(--FM);font-size:9px;padding:2px 7px;border-radius:20px;text-transform:uppercase}
+
+/* ─── TIKTOK SECTION ─── */
+.tt-section{
+  padding:80px 20px;background:var(--bg);
+  border-bottom:1px solid var(--bdr);text-align:center;
+  position:relative;overflow:hidden;
+}
+.tt-section::before{content:'🎵';position:absolute;font-size:300px;opacity:.015;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.tt-card{
+  max-width:500px;margin:0 auto;
+  background:linear-gradient(135deg,rgba(10,10,20,.9),rgba(255,0,80,.06));
+  border:1px solid rgba(255,0,80,.2);border-radius:20px;padding:40px 32px;
+  backdrop-filter:blur(20px);
+}
+.tt-card-icon{font-size:52px;margin-bottom:16px;display:block}
+.tt-card-title{font-family:var(--FD);font-size:20px;font-weight:900;margin-bottom:10px}
+.tt-card-sub{font-size:14px;color:var(--m2);line-height:1.65;margin-bottom:26px}
+.tt-card-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:14px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+  color:#fff;background:linear-gradient(135deg,#010101,#ff0050);
+  padding:14px 36px;border-radius:10px;transition:all .2s;
+}
+.tt-card-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,0,80,.4)}
+.tt-card-btn svg{width:20px;height:20px;fill:currentColor}
+.tt-handle{font-family:var(--FM);font-size:11px;color:var(--m2);margin-top:14px}
+
+/* ─── FOOTER ─── */
+#hfoot{
+  background:var(--bg1);border-top:1px solid var(--bdr);
+  padding:36px 28px;display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:14px;
+}
+.flogo{font-family:var(--FD);font-size:13px;font-weight:900;letter-spacing:2px;background:linear-gradient(135deg,var(--g),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.fnote{font-family:var(--FM);font-size:10px;color:var(--muted)}
+.foot-links{display:flex;gap:12px}
+.foot-link{font-family:var(--FM);font-size:10px;color:var(--m2);cursor:pointer;transition:color .14s}
+.foot-link:hover{color:var(--g)}
+
+/* ════════ BUILDER ════════ */
+.bnav{
+  display:flex;align-items:center;padding:0 14px;height:50px;flex-shrink:0;
+  background:var(--bg1);border-bottom:1px solid var(--bdr);gap:4px;
+}
+.mtabs{display:flex;gap:2px;overflow-x:auto;flex:1;scrollbar-width:none}
+.mtabs::-webkit-scrollbar{display:none}
+.mtab{
+  display:flex;align-items:center;gap:4px;padding:5px 10px;border-radius:6px;
+  border:1px solid transparent;color:var(--m2);font-size:10px;font-weight:700;
+  letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;transition:all .12s;flex-shrink:0;
+}
+.mtab:hover{color:var(--text);background:rgba(255,255,255,.04);border-color:var(--bdr)}
+.mi{font-size:12px}
+.mtab.on[data-m=gui]{color:var(--g);border-color:rgba(0,255,170,.28);background:rgba(0,255,170,.06)}
+.mtab.on[data-m=script]{color:var(--b);border-color:rgba(77,158,255,.28);background:rgba(77,158,255,.06)}
+.mtab.on[data-m=system]{color:var(--p);border-color:rgba(192,132,252,.28);background:rgba(192,132,252,.06)}
+.mtab.on[data-m=datastore]{color:var(--o);border-color:rgba(255,140,66,.28);background:rgba(255,140,66,.06)}
+.mtab.on[data-m=animation]{color:var(--pk);border-color:rgba(244,114,182,.28);background:rgba(244,114,182,.06)}
+.mtab.on[data-m=debug]{color:var(--y);border-color:rgba(251,191,36,.28);background:rgba(251,191,36,.06)}
+.mtab.on[data-m=module]{color:var(--c);border-color:rgba(34,211,238,.28);background:rgba(34,211,238,.06)}
+.mtab.on[data-m=gamepass]{color:var(--r);border-color:rgba(248,113,113,.28);background:rgba(248,113,113,.06)}
+.br{display:flex;align-items:center;gap:5px;flex-shrink:0}
+.mchip{font-family:var(--FM);font-size:9px;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid var(--bdr);padding:3px 8px;border-radius:20px;letter-spacing:1px;white-space:nowrap}
+.clr{font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--m2);border:1px solid var(--bdr);padding:4px 9px;border-radius:5px;transition:all .12s;text-transform:uppercase}
+.clr:hover{color:var(--text);border-color:var(--bdr3)}
+.bbody{display:flex;flex:1;overflow:hidden}
+.bsb{width:204px;flex-shrink:0;background:var(--bg1);border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow:hidden}
+.sbh{padding:10px 12px 6px;font-family:var(--FM);font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--bdr);flex-shrink:0}
+.sbs{overflow-y:auto;flex:1;padding:7px}
+.sbsec{font-family:var(--FM);font-size:9px;letter-spacing:1.5px;color:var(--muted);padding:8px 5px 4px;text-transform:uppercase}
+.sbbtn{display:block;width:100%;text-align:left;padding:6px 8px;border:1px solid transparent;border-radius:5px;color:var(--m2);font-size:11px;font-weight:500;line-height:1.3;transition:all .12s;margin-bottom:2px}
+.sbbtn:hover{background:rgba(255,255,255,.04);border-color:var(--bdr);color:var(--text)}
+.sbdiv{height:1px;background:var(--bdr);margin:6px 0}
+.cxrow{display:flex;gap:3px;padding:5px}
+.cxb{flex:1;font-family:var(--FM);font-size:9px;letter-spacing:.5px;text-transform:uppercase;padding:5px 3px;border-radius:5px;border:1px solid var(--bdr);color:var(--muted);transition:all .12s}
+.cxb:hover{border-color:var(--bdr3);color:var(--text)}
+#cxs.on{border-color:rgba(0,255,170,.3);color:var(--g);background:rgba(0,255,170,.05)}
+#cxh.on{border-color:rgba(255,140,66,.3);color:var(--o);background:rgba(255,140,66,.05)}
+.sb-tt{display:flex;align-items:center;gap:7px;margin:7px 5px 3px;padding:7px 10px;border-radius:8px;background:linear-gradient(135deg,rgba(5,5,15,.8),rgba(255,0,80,.1));border:1px solid rgba(255,0,80,.2);transition:all .15s}
+.sb-tt:hover{border-color:rgba(255,0,80,.4);transform:translateY(-1px)}
+.sb-tt svg{width:12px;height:12px;fill:#ff0050;flex-shrink:0}
+.sb-tt-txt{font-family:var(--FM);font-size:9px;letter-spacing:.5px;color:#ff5c7a;text-transform:uppercase}
+.sb-share{display:flex;align-items:center;gap:7px;margin:4px 5px;padding:7px 10px;border-radius:8px;background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);cursor:pointer;transition:all .15s}
+.sb-share:hover{border-color:rgba(251,191,36,.4);transform:translateY(-1px)}
+.sb-share-txt{font-family:var(--FM);font-size:9px;letter-spacing:.5px;color:var(--y);text-transform:uppercase}
+
+/* CHAT */
+.bchat{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.cout{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+.ewrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:28px}
+.eico{
+  width:68px;height:68px;border-radius:16px;font-size:28px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:5px;
+  background:linear-gradient(135deg,rgba(0,255,170,.1),rgba(77,158,255,.1));
+  border:1px solid rgba(0,255,170,.15);
+  box-shadow:0 4px 20px rgba(0,255,170,.1);
+}
+.eh{font-family:var(--FD);font-size:18px;font-weight:900}
+.ep{font-size:12px;color:var(--m2);max-width:290px;line-height:1.6}
+.echips{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:8px}
+.echip{font-family:var(--FM);font-size:9px;padding:5px 12px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--bdr2);color:var(--m2);cursor:pointer;transition:all .12s}
+.echip:hover{border-color:var(--g);color:var(--g)}
+
+/* MESSAGES */
+.msgu{
+  align-self:flex-end;max-width:76%;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:14px 14px 3px 14px;padding:10px 14px;font-size:13px;font-weight:500;line-height:1.5;color:var(--text);
+}
+.msga{display:flex;flex-direction:column;gap:8px}
+.albl{
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--FM);font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--g),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.apl{width:6px;height:6px;border-radius:50%;background:var(--g);animation:pls 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pls{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.5)}}
+.atxt{
+  font-size:12px;line-height:1.75;color:#a8a8cc;
+  background:rgba(0,255,170,.03);border:1px solid rgba(0,255,170,.1);
+  border-left:2px solid rgba(0,255,170,.3);border-radius:0 8px 8px 0;padding:11px 14px;
+}
+.atxt strong{color:var(--text);font-weight:600}
+.atxt code{font-family:var(--FM);font-size:10px;background:rgba(255,255,255,.06);border:1px solid var(--bdr2);padding:1px 5px;border-radius:3px;color:#7ee8a2}
+
+/* PLACEMENT BADGE */
+.placement{display:inline-flex;align-items:center;gap:4px;font-family:var(--FM);font-size:9px;letter-spacing:.4px;text-transform:uppercase;padding:2px 7px;border-radius:20px}
+.pl-ss{background:rgba(0,255,170,.08);color:var(--g);border:1px solid rgba(0,255,170,.2)}
+.pl-sp{background:rgba(77,158,255,.08);color:var(--b);border:1px solid rgba(77,158,255,.2)}
+.pl-sc{background:rgba(192,132,252,.08);color:var(--p);border:1px solid rgba(192,132,252,.2)}
+.pl-rs{background:rgba(251,191,36,.08);color:var(--y);border:1px solid rgba(251,191,36,.2)}
+.pl-sg{background:rgba(244,114,182,.08);color:var(--pk);border:1px solid rgba(244,114,182,.2)}
+.pl-ms{background:rgba(34,211,238,.08);color:var(--c);border:1px solid rgba(34,211,238,.2)}
+.pl-ws{background:rgba(255,140,66,.08);color:var(--o);border:1px solid rgba(255,140,66,.2)}
+
+/* CODE CARD */
+.ccard{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);transition:border-color .15s}
+.ccard:hover{border-color:rgba(0,255,170,.2)}
+.chead{
+  display:flex;align-items:center;gap:6px;padding:8px 12px;
+  background:rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.05);flex-wrap:wrap;row-gap:5px;
+}
+.mdts{display:flex;gap:4px}.mdts span{width:10px;height:10px;border-radius:50%}
+.d1{background:#ff5f57}.d2{background:#febc2e}.d3{background:#28c840}
+.ctype{font-family:var(--FM);font-size:9px;color:var(--muted);letter-spacing:.5px}
+.cname{font-family:var(--FM);font-size:10px;color:#79b8ff;font-weight:500;flex:1;min-width:80px}
+.cacts{display:flex;gap:4px;flex-wrap:wrap}
+.act{font-family:var(--FM);font-size:9px;letter-spacing:.4px;text-transform:uppercase;padding:3px 8px;border-radius:20px;border:1px solid rgba(255,255,255,.1);color:var(--m2);transition:all .12s}
+.act:hover{color:var(--text);border-color:rgba(255,255,255,.2)}
+.act.done{color:var(--g);border-color:rgba(0,255,170,.25);background:rgba(0,255,170,.05)}
+.act-save{color:var(--y);border-color:rgba(251,191,36,.2)}.act-save:hover{background:rgba(251,191,36,.06)}
+.act-save.saved{background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.3)}
+.act-dl{color:var(--c);border-color:rgba(34,211,238,.2)}.act-dl:hover{background:rgba(34,211,238,.06)}
+.act-exp{color:var(--p);border-color:rgba(192,132,252,.2)}.act-exp:hover{background:rgba(192,132,252,.06)}
+.act-share{color:var(--y);border-color:rgba(251,191,36,.2)}.act-share:hover{background:rgba(251,191,36,.06)}
+.ccard pre{margin:0;font-size:11px;line-height:1.7}
+.ccard pre code.hljs{background:rgba(0,0,0,.5)!important;padding:14px 16px!important;display:block;overflow-x:auto}
+.explain-panel{background:rgba(192,132,252,.04);border-left:2px solid rgba(192,132,252,.25);padding:11px 14px;font-size:11px;color:#b0b0cc;line-height:1.75;display:none}
+.explain-panel.open{display:block}
+.explain-panel strong{color:var(--text)}
+.exp-head{font-family:var(--FM);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--p);margin-bottom:6px}
+.script-sep{display:flex;align-items:center;gap:8px;padding:4px 0}
+.script-sep-line{flex:1;height:1px;background:rgba(255,255,255,.06)}
+.script-sep-txt{font-family:var(--FM);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+
+/* LOADING */
+.loading{display:flex;align-items:center;gap:8px;padding:4px 0}
+.ld{display:flex;gap:3px}.ld span{width:6px;height:6px;border-radius:50%;background:var(--g);animation:ldp 1.2s ease-in-out infinite}
+.ld span:nth-child(2){animation-delay:.15s}.ld span:nth-child(3){animation-delay:.3s}
+@keyframes ldp{0%,80%,100%{transform:scale(.6);opacity:.2}40%{transform:scale(1);opacity:1}}
+.ldt{font-family:var(--FM);font-size:11px;color:var(--muted)}
+
+/* INPUT */
+.ciw{padding:12px 18px;border-top:1px solid var(--bdr);display:flex;flex-direction:column;gap:7px;flex-shrink:0;background:var(--bg)}
+.ibox{
+  display:flex;gap:8px;align-items:flex-end;
+  background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:10px 12px;transition:border-color .16s;
+}
+.ibox:focus-within{border-color:rgba(0,255,170,.35);box-shadow:0 0 0 4px rgba(0,255,170,.04)}
+#mi{flex:1;color:var(--text);font-size:13px;font-weight:500;resize:none;max-height:110px;min-height:20px;line-height:1.5}
+#mi::placeholder{color:var(--muted)}
+.isend{
+  font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  background:linear-gradient(135deg,#00ffaa,#00b4d8);color:#04040a;
+  padding:8px 16px;border-radius:8px;transition:all .16s;flex-shrink:0;white-space:nowrap;
+}
+.isend:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,255,170,.3)}
+.isend:disabled{opacity:.3;cursor:not-allowed}
+.mods{display:flex;flex-wrap:wrap;gap:4px}
+.mod{
+  font-family:var(--FM);font-size:9px;letter-spacing:.4px;text-transform:uppercase;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+  color:var(--muted);padding:3px 9px;border-radius:20px;cursor:pointer;transition:all .12s;
+}
+.mod:hover{border-color:var(--o);color:var(--o);background:rgba(255,140,66,.05)}
+
+/* ════════ LIBRARY ════════ */
+.lib-top{padding:16px 20px 12px;border-bottom:1px solid var(--bdr);flex-shrink:0;display:flex;align-items:center;gap:10px;background:var(--bg1)}
+.lib-title{font-family:var(--FD);font-size:13px;font-weight:900;letter-spacing:2px}
+.lib-count{font-family:var(--FM);font-size:10px;color:var(--m2);background:rgba(255,255,255,.04);border:1px solid var(--bdr);padding:3px 10px;border-radius:20px}
+.lib-clear{font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--r);border:1px solid rgba(248,113,113,.2);padding:4px 10px;border-radius:5px;transition:all .13s;text-transform:uppercase;margin-left:auto}
+.lib-clear:hover{background:rgba(248,113,113,.07)}
+.lib-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted);padding:40px;text-align:center}
+.lib-empty-icon{font-size:40px;opacity:.4}
+.lib-empty-txt{font-family:var(--FM);font-size:12px}
+.lib-grid{flex:1;overflow-y:auto;padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.lib-item{background:rgba(255,255,255,.02);border:1px solid var(--bdr);border-radius:10px;overflow:hidden;transition:border-color .15s}
+.lib-item:hover{border-color:var(--bdr2)}
+.lib-ihead{display:flex;align-items:center;gap:7px;padding:9px 12px;background:rgba(0,0,0,.3);border-bottom:1px solid var(--bdr);cursor:pointer;flex-wrap:wrap;row-gap:5px}
+.lib-iname{font-family:var(--FM);font-size:11px;color:#79b8ff;font-weight:500;flex:1;min-width:100px}
+.lib-idate{font-family:var(--FM);font-size:9px;color:var(--muted)}
+.lib-code{display:none}.lib-code.open{display:block}
+.lib-code pre{margin:0;font-size:11px;line-height:1.6}
+.lib-code pre code.hljs{background:rgba(0,0,0,.6)!important;padding:11px 13px!important;display:block;overflow-x:auto;max-height:200px}
+
+/* ════════ COMMUNITY SHOWCASE ════════ */
+#ps{background:var(--bg);padding-top:58px}
+.cs-wrap{flex:1;overflow-y:auto;padding:0}
+.cs-hero{
+  padding:50px 24px 36px;
+  background:linear-gradient(135deg,rgba(0,255,170,.04),rgba(77,158,255,.03));
+  border-bottom:1px solid var(--bdr);
+  position:relative;overflow:hidden;
+}
+.cs-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,255,170,.025)1px,transparent 1px),linear-gradient(90deg,rgba(0,255,170,.025)1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.cs-title{font-family:var(--FD);font-size:clamp(22px,4vw,40px);font-weight:900;margin-bottom:10px}
+.cs-title em{-webkit-text-fill-color:transparent;background:linear-gradient(135deg,var(--g),var(--b));-webkit-background-clip:text;background-clip:text;font-style:normal}
+.cs-sub{font-size:14px;color:var(--m2);max-width:560px;line-height:1.6;margin-bottom:24px}
+.cs-share-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--g),var(--b));color:#04040a;
+  padding:12px 28px;border-radius:10px;transition:all .2s;cursor:pointer;
+}
+.cs-share-btn:hover{transform:translateY(-2px);box-shadow:var(--glow-g)}
+.cs-stats{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+.cs-stat{display:flex;align-items:center;gap:8px;font-family:var(--FM);font-size:11px;color:var(--m2)}
+.cs-stat-num{font-family:var(--FD);font-size:16px;font-weight:900;color:var(--g)}
+
+/* SHARE MODAL */
+.modal-overlay{
+  position:fixed;inset:0;z-index:600;
+  background:rgba(4,4,10,.85);backdrop-filter:blur(10px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--bg2);border:1px solid rgba(0,255,170,.2);border-radius:20px;
+  padding:32px;width:100%;max-width:500px;position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(0,255,170,.1);
+  animation:modalIn .3s ease;
+}
+@keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close{position:absolute;top:16px;right:16px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--m2);cursor:pointer;transition:all .15s}
+.modal-close:hover{background:rgba(255,255,255,.12);color:var(--text)}
+.modal-title{font-family:var(--FD);font-size:18px;font-weight:900;margin-bottom:6px}
+.modal-title em{color:var(--g);font-style:normal}
+.modal-sub{font-size:13px;color:var(--m2);margin-bottom:24px;line-height:1.5}
+.mfield{margin-bottom:14px}
+.mlabel{font-family:var(--FM);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--m2);margin-bottom:6px;display:block}
+.minput{
+  width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);
+  border-radius:9px;padding:10px 13px;font-size:13px;font-weight:500;color:var(--text);
+  transition:border-color .15s;
+}
+.minput:focus{border-color:rgba(0,255,170,.35)}
+.minput::placeholder{color:var(--muted)}
+.mselect{
+  width:100%;background:var(--bg2);border:1.5px solid rgba(255,255,255,.1);
+  border-radius:9px;padding:10px 13px;font-size:13px;font-weight:600;color:var(--text);
+  transition:border-color .15s;cursor:pointer;appearance:none;
+}
+.mselect:focus{border-color:rgba(0,255,170,.35)}
+.mselect option{background:var(--bg2)}
+.mtextarea{
+  width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);
+  border-radius:9px;padding:11px 13px;font-size:13px;font-weight:500;color:var(--text);
+  resize:vertical;min-height:100px;line-height:1.6;transition:border-color .15s;
+}
+.mtextarea:focus{border-color:rgba(0,255,170,.35)}
+.mtextarea::placeholder{color:var(--muted)}
+.mcode{
+  width:100%;background:rgba(0,0,0,.4);border:1.5px solid rgba(0,255,170,.15);
+  border-radius:9px;padding:11px 13px;font-family:var(--FM);font-size:11px;
+  color:#7ee8a2;resize:vertical;min-height:120px;line-height:1.65;transition:border-color .15s;
+}
+.mcode:focus{border-color:rgba(0,255,170,.35)}
+.mcode::placeholder{color:var(--muted)}
+.msubmit{
+  width:100%;font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--g),var(--b));color:#04040a;
+  padding:13px;border-radius:9px;transition:all .18s;margin-top:4px;
+}
+.msubmit:hover{transform:translateY(-1px);box-shadow:var(--glow-g)}
+
+/* SHOWCASE GRID */
+.cs-grid{padding:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.cs-filters{display:flex;gap:7px;padding:16px 24px;border-bottom:1px solid var(--bdr);flex-wrap:wrap;background:var(--bg1)}
+.cs-filter{
+  font-family:var(--FM);font-size:9px;letter-spacing:.5px;text-transform:uppercase;
+  padding:5px 14px;border-radius:20px;border:1px solid var(--bdr);color:var(--m2);
+  cursor:pointer;transition:all .12s;
+}
+.cs-filter:hover{color:var(--text);border-color:var(--bdr2)}
+.cs-filter.on{color:var(--g);background:rgba(0,255,170,.07);border-color:rgba(0,255,170,.25)}
+.cs-empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
+.cs-empty-icon{font-size:48px;margin-bottom:14px;opacity:.4}
+.cs-empty-txt{font-family:var(--FM);font-size:12px;line-height:1.6}
+
+/* SHOWCASE CARD */
+.sc-card{
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;overflow:hidden;transition:all .2s;
+}
+.sc-card:hover{transform:translateY(-3px);border-color:rgba(0,255,170,.2);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.sc-card-top{padding:16px;background:rgba(0,0,0,.2);border-bottom:1px solid rgba(255,255,255,.05)}
+.sc-card-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.sc-avatar{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--FD);font-size:13px;font-weight:900;
+}
+.sc-card-info{flex:1;min-width:0}
+.sc-card-title{font-size:13px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sc-card-author{font-family:var(--FM);font-size:10px;color:var(--m2)}
+.sc-card-type{font-family:var(--FM);font-size:9px;padding:2px 8px;border-radius:20px;text-transform:uppercase;flex-shrink:0}
+.sc-card-desc{font-size:12px;color:var(--m2);line-height:1.6;margin-bottom:10px}
+.sc-card-tags{display:flex;flex-wrap:wrap;gap:4px}
+.sc-tag{font-family:var(--FM);font-size:9px;padding:2px 7px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:var(--m2)}
+.sc-card-code{position:relative;max-height:140px;overflow:hidden}
+.sc-card-code::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50px;background:linear-gradient(transparent,rgba(4,4,10,.9));pointer-events:none}
+.sc-card-code pre{margin:0;font-size:10px;line-height:1.6}
+.sc-card-code pre code.hljs{background:rgba(0,0,0,.6)!important;padding:12px 14px!important;display:block;overflow-x:auto}
+.sc-card-footer{display:flex;align-items:center;padding:10px 14px;gap:8px;flex-wrap:wrap}
+.sc-card-date{font-family:var(--FM);font-size:9px;color:var(--muted);margin-right:auto}
+.sc-copy{font-family:var(--FM);font-size:9px;letter-spacing:.4px;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid rgba(0,255,170,.2);color:var(--g);cursor:pointer;transition:all .12s}
+.sc-copy:hover{background:rgba(0,255,170,.07)}
+.sc-copy.done{background:rgba(0,255,170,.1)}
+.sc-like{font-family:var(--FM);font-size:9px;letter-spacing:.4px;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid rgba(244,114,182,.2);color:var(--pk);cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:4px}
+.sc-like:hover{background:rgba(244,114,182,.07)}
+.sc-like.liked{background:rgba(244,114,182,.1);border-color:rgba(244,114,182,.4)}
+
+/* ════════ FEEDBACK ════════ */
+#pf{background:var(--bg);padding-top:58px}
+.fb-wrap{flex:1;overflow-y:auto;padding:40px 20px}
+.fb-inner{max-width:600px;margin:0 auto}
+.fb-title{font-family:var(--FD);font-size:clamp(22px,4vw,34px);font-weight:900;margin-bottom:8px}
+.fb-title em{color:var(--y);font-style:normal}
+.fb-sub{font-size:14px;color:var(--m2);margin-bottom:28px;line-height:1.6}
+.stars-wrap{margin-bottom:20px}
+.stars-lbl{font-family:var(--FM);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--m2);margin-bottom:9px}
+.stars{display:flex;gap:8px}
+.star{font-size:30px;cursor:pointer;transition:transform .12s;color:rgba(255,255,255,.1);line-height:1}
+.star.lit{color:var(--y);text-shadow:0 0 10px rgba(251,191,36,.5)}
+.star:hover{transform:scale(1.2)}
+.fb-field{margin-bottom:14px}
+.fb-label{font-family:var(--FM);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--m2);margin-bottom:7px;display:block}
+.fb-select{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:9px;padding:10px 13px;font-size:13px;font-weight:600;color:var(--text);transition:border-color .16s;cursor:pointer;appearance:none}
+.fb-select:focus{border-color:rgba(251,191,36,.4)}
+.fb-select option{background:var(--bg2)}
+.fb-textarea{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:9px;padding:11px 13px;font-size:13px;font-weight:500;color:var(--text);resize:vertical;min-height:110px;line-height:1.6;transition:border-color .16s}
+.fb-textarea:focus{border-color:rgba(251,191,36,.4)}
+.fb-textarea::placeholder{color:var(--muted)}
+.fb-name{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:9px;padding:10px 13px;font-size:13px;font-weight:500;color:var(--text);transition:border-color .16s}
+.fb-name:focus{border-color:rgba(251,191,36,.4)}
+.fb-name::placeholder{color:var(--muted)}
+.fb-submit{width:100%;font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:linear-gradient(135deg,var(--y),#f97316);color:#04040a;padding:13px;border-radius:9px;transition:all .18s;margin-top:4px}
+.fb-submit:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(251,191,36,.3)}
+.fb-success{display:none;text-align:center;padding:28px 20px}
+.fb-success.on{display:block}
+.fb-success-icon{font-size:52px;margin-bottom:14px}
+.fb-success-title{font-family:var(--FD);font-size:20px;font-weight:900;margin-bottom:9px;color:var(--g)}
+.fb-success-sub{font-size:13px;color:var(--m2);line-height:1.6}
+.fb-wall{margin-top:32px;padding-top:24px;border-top:1px solid var(--bdr)}
+.fb-wall-title{font-family:var(--FD);font-size:14px;font-weight:900;margin-bottom:14px;letter-spacing:1px}
+.fb-item{background:rgba(255,255,255,.02);border:1px solid var(--bdr);border-radius:10px;padding:13px;margin-bottom:8px;transition:border-color .15s}
+.fb-item:hover{border-color:var(--bdr2)}
+.fb-item-top{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.fb-item-stars{font-size:13px;color:var(--y)}
+.fb-item-name{font-family:var(--FM);font-size:10px;color:var(--m2)}
+.fb-item-cat{font-family:var(--FM);font-size:9px;padding:2px 7px;border-radius:20px;background:rgba(77,158,255,.08);color:var(--b);border:1px solid rgba(77,158,255,.18)}
+.fb-item-date{font-family:var(--FM);font-size:9px;color:var(--muted);margin-left:auto}
+.fb-item-txt{font-size:12px;color:var(--m2);line-height:1.65}
+.fb-empty{font-family:var(--FM);font-size:11px;color:var(--muted);text-align:center;padding:18px}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;z-index:9999;font-family:var(--FM);font-size:11px;letter-spacing:.5px;background:var(--bg3);border:1px solid rgba(0,255,170,.2);color:var(--text);padding:10px 18px;border-radius:10px;opacity:0;transform:translateY(10px);transition:all .25s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.toast.show{opacity:1;transform:translateY(0)}
+
+@media(max-width:740px){.nlinks{display:none}#nav{padding:0 12px}.bsb{display:none}.hstats{flex-wrap:wrap}.hs::after{display:none}.showcase-grid{grid-template-columns:1fr}.cs-grid{grid-template-columns:1fr}.modal{padding:22px}}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+
+<!-- SHARE MODAL -->
+<div class="modal-overlay" id="share-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">Share Your <em>Creation</em> 🚀</div>
+    <div class="modal-sub">Show the community what you built with RbxCraft·AI!</div>
+    <div class="mfield">
+      <label class="mlabel">Your Name / Username</label>
+      <input type="text" class="minput" id="sh-name" placeholder="e.g. CoolDev123">
+    </div>
+    <div class="mfield">
+      <label class="mlabel">Project Title</label>
+      <input type="text" class="minput" id="sh-title" placeholder="e.g. Shop GUI with gradient buttons">
+    </div>
+    <div class="mfield">
+      <label class="mlabel">Type</label>
+      <select class="mselect" id="sh-type">
+        <option value="">Select type...</option>
+        <option value="gui">🖥️ GUI</option>
+        <option value="script">⚙️ Script</option>
+        <option value="system">🧠 Game System</option>
+        <option value="datastore">💾 DataStore</option>
+        <option value="animation">🎬 Animation</option>
+        <option value="gamepass">💎 Gamepass</option>
+        <option value="other">✨ Other</option>
+      </select>
+    </div>
+    <div class="mfield">
+      <label class="mlabel">Description</label>
+      <textarea class="mtextarea" id="sh-desc" placeholder="What did you build? What does it do?"></textarea>
+    </div>
+    <div class="mfield">
+      <label class="mlabel">Paste your Lua code</label>
+      <textarea class="mcode" id="sh-code" placeholder="-- Paste your RbxCraft·AI generated code here..."></textarea>
+    </div>
+    <button class="msubmit" onclick="submitShare()">Share with Community ⚡</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo" onclick="goHome()">RbxCraft·AI</div>
+  <div class="nlinks">
+    <button class="nl on" id="nl0" onclick="goHome()">Home</button>
+    <button class="nl" id="nl1" onclick="goBuilder()">Builder</button>
+    <button class="nl" id="nl2" onclick="goShowcase()">Showcase</button>
+    <button class="nl" id="nl3" onclick="goLib()">Library</button>
+    <button class="nl" id="nl4" onclick="goFeedback()">Feedback</button>
+  </div>
+  <div class="nr">
+    <button class="share-nav" onclick="openModal()">🚀 Share</button>
+    <button class="fb-nav" onclick="goFeedback()">⭐ Feedback</button>
+    <a class="tt-nav" href="https://www.tiktok.com/@zelqorix01" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.86 4.86 0 0 1-1.01-.07z"/></svg>
+      TikTok
+    </a>
+    <button class="launch-btn" onclick="goBuilder()">Launch ⚡</button>
+  </div>
+</nav>
+
+<!-- ═══════ HOME ═══════ -->
+<div id="ph" class="pg on">
+  <div class="hero">
+    <div class="hgrid"></div>
+    <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+    <div class="badge"><span class="bdot"></span>The #1 Roblox AI Builder · AAA Quality Code</div>
+    <h1 class="hh1">
+      <span class="hw">BUILD YOUR</span>
+      <span class="hg">ROBLOX GAME</span>
+      <span class="hd">WITH AI</span>
+    </h1>
+    <p class="hsub">The <strong>most powerful Roblox AI ever built</strong>. Stunning AAA GUIs with gradients and textures. Separate scripts per file. Share your creations with the community.</p>
+    <div class="hacts">
+      <button class="h-cta" onclick="goBuilder()">Start Building Free ⚡</button>
+      <button class="h-ghost" onclick="goShowcase()">See Community →</button>
+      <a class="h-tt" href="https://www.tiktok.com/@zelqorix01" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1 2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.86 4.86 0 0 1-1.01-.07z"/></svg>
+        @zelqorix01
+      </a>
+    </div>
+    <div class="hstats">
+      <div class="hs"><div class="hsn">8</div><div class="hsl">AI Modes</div></div>
+      <div class="hs"><div class="hsn">AAA</div><div class="hsl">GUI Quality</div></div>
+      <div class="hs"><div class="hsn">Split</div><div class="hsl">Multi-Scripts</div></div>
+      <div class="hs"><div class="hsn">🌍</div><div class="hsl">Community</div></div>
+    </div>
+    <div class="scroll-ind"><div class="scroll-ind-txt">Scroll</div><div class="scroll-ind-line"></div></div>
+  </div>
+
+  <!-- QUICK LAUNCH STRIP -->
+  <div class="ql-strip">
+    <span style="font-family:var(--FM);font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;flex-shrink:0">Quick Launch:</span>
+    <button class="ql-chip" onclick="launchMode('gui')" style="color:var(--g);border-color:rgba(0,255,170,.25);background:rgba(0,255,170,.06)"><span class="ci">🖥️</span>GUI Builder</button>
+    <button class="ql-chip" onclick="launchMode('script')" style="color:var(--b);border-color:rgba(77,158,255,.25);background:rgba(77,158,255,.06)"><span class="ci">⚙️</span>Script Maker</button>
+    <button class="ql-chip" onclick="launchMode('system')" style="color:var(--p);border-color:rgba(192,132,252,.25);background:rgba(192,132,252,.06)"><span class="ci">🧠</span>Game Builder</button>
+    <button class="ql-chip" onclick="launchMode('datastore')" style="color:var(--o);border-color:rgba(255,140,66,.25);background:rgba(255,140,66,.06)"><span class="ci">💾</span>DataStore</button>
+    <button class="ql-chip" onclick="launchMode('animation')" style="color:var(--pk);border-color:rgba(244,114,182,.25);background:rgba(244,114,182,.06)"><span class="ci">🎬</span>Animations</button>
+    <button class="ql-chip" onclick="launchMode('debug')" style="color:var(--y);border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06)"><span class="ci">🔍</span>Debug & Fix</button>
+    <button class="ql-chip" onclick="launchMode('module')" style="color:var(--c);border-color:rgba(34,211,238,.25);background:rgba(34,211,238,.06)"><span class="ci">📦</span>Modules</button>
+    <button class="ql-chip" onclick="launchMode('gamepass')" style="color:var(--r);border-color:rgba(248,113,113,.25);background:rgba(248,113,113,.06)"><span class="ci">💎</span>Gamepass</button>
+  </div>
+
+  <!-- SHOWCASE PREVIEW -->
+  <div class="showcase">
+    <div class="si">
+      <div class="sec-label" style="color:var(--g)">// GUI Showcase</div>
+      <div class="showcase-grid">
+        <div class="s-left">
+          <div class="sec-h">GUIs that look like<br><span style="color:var(--g)">real top games</span></div>
+          <p>RbxCraft·AI generates authentic Roblox-style GUIs — UIGradient color buttons, stud texture backgrounds, glowing elements, spring animations. The same quality you see in the top games.</p>
+          <div class="s-tags">
+            <span class="s-tag" style="background:rgba(0,255,170,.07);color:var(--g);border:1px solid rgba(0,255,170,.15)">UIGradient</span>
+            <span class="s-tag" style="background:rgba(77,158,255,.07);color:var(--b);border:1px solid rgba(77,158,255,.15)">ImageLabel Textures</span>
+            <span class="s-tag" style="background:rgba(192,132,252,.07);color:var(--p);border:1px solid rgba(192,132,252,.15)">Spring Anims</span>
+            <span class="s-tag" style="background:rgba(255,140,66,.07);color:var(--o);border:1px solid rgba(255,140,66,.15)">Glow FX</span>
+            <span class="s-tag" style="background:rgba(251,191,36,.07);color:var(--y);border:1px solid rgba(251,191,36,.15)">Stud Textures</span>
+          </div>
+          <button class="h-cta" style="font-size:12px;padding:11px 24px" onclick="launchMode('gui')">Build a GUI Now ⚡</button>
+        </div>
+        <div class="rbx-mock">
+          <div class="rbx-top">
+            <div class="rbx-title-wrap"><span class="rbx-star">⭐</span><div class="rbx-game-title">MAIN MENU</div></div>
+            <div class="rbx-x">✕</div>
+          </div>
+          <div class="rbx-currency">
+            <div class="rbx-cur coins"><span class="rbx-cur-icon">🪙</span><span class="rbx-cur-val">1,250,000</span></div>
+            <div class="rbx-cur gems"><span class="rbx-cur-icon">💎</span><span class="rbx-cur-val">4,820</span></div>
+          </div>
+          <div class="rbx-btns">
+            <div class="rbx-btn rb1"><span class="rbx-btn-ico">🛒</span><span class="rbx-btn-lbl">Shop</span></div>
+            <div class="rbx-btn rb2"><span class="rbx-btn-ico">📖</span><span class="rbx-btn-lbl">Index</span></div>
+            <div class="rbx-btn rb3"><span class="rbx-btn-ico">🔄</span><span class="rbx-btn-lbl">Rebirth</span></div>
+            <div class="rbx-btn rb4"><span class="rbx-btn-ico">⛵</span><span class="rbx-btn-lbl">Boats</span></div>
+            <div class="rbx-btn rb5"><span class="rbx-btn-ico">😊</span><span class="rbx-btn-lbl">Invite</span></div>
+            <div class="rbx-btn rb6"><span class="rbx-btn-ico">⚙️</span><span class="rbx-btn-lbl">Settings</span></div>
+          </div>
+          <div class="rbx-grad-demo">
+            <div class="rbx-grad-lbl">UIGradient color range</div>
+            <div class="rbx-grad-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMUNITY CTA -->
+  <div style="padding:80px 20px;background:var(--bg1);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);text-align:center;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(77,158,255,.05),transparent);pointer-events:none"></div>
+    <div style="max-width:600px;margin:0 auto">
+      <div style="font-family:var(--FM);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--b);margin-bottom:12px">// Community</div>
+      <div style="font-family:var(--FD);font-size:clamp(22px,4vw,42px);font-weight:900;margin-bottom:14px">Built something <span style="color:var(--b)">awesome?</span></div>
+      <p style="font-size:15px;color:var(--m2);line-height:1.65;margin-bottom:28px">Share your RbxCraft·AI creations with thousands of Roblox developers. Inspire others and show off your builds!</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="h-cta" onclick="openModal()">🚀 Share My Creation</button>
+        <button class="h-ghost" onclick="goShowcase()">Browse Community →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIKTOK -->
+  <div class="tt-section">
+    <div class="tt-card">
+      <span class="tt-card-icon">🎵</span>
+      <div class="tt-card-title">Follow on TikTok</div>
+      <div class="tt-card-sub">Watch Roblox scripting tutorials, GUI showcases, and see RbxCraft·AI in action. New videos every week!</div>
+      <a class="tt-card-btn" href="https://www.tiktok.com/@zelqorix01" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.86 4.86 0 0 1-1.01-.07z"/></svg>
+        Follow @zelqorix01
+      </a>
+      <div class="tt-handle">tiktok.com/@zelqorix01</div>
+    </div>
+  </div>
+
+  <div id="hfoot">
+    <div class="flogo">RbxCraft·AI</div>
+    <div class="foot-links">
+      <span class="foot-link" onclick="goBuilder()">Builder</span>
+      <span class="foot-link" onclick="goShowcase()">Showcase</span>
+      <span class="foot-link" onclick="goLib()">Library</span>
+      <span class="foot-link" onclick="goFeedback()">Feedback</span>
+    </div>
+    <div class="fnote">Powered by Claude · Not affiliated with Roblox Corporation</div>
+  </div>
+</div>
+
+<!-- ═══════ BUILDER ═══════ -->
+<div id="pb" class="pg">
+  <div class="bnav">
+    <div class="mtabs">
+      <button class="mtab on" data-m="gui"       onclick="sw('gui',this)"><span class="mi">🖥️</span>GUI</button>
+      <button class="mtab"    data-m="script"    onclick="sw('script',this)"><span class="mi">⚙️</span>Scripts</button>
+      <button class="mtab"    data-m="system"    onclick="sw('system',this)"><span class="mi">🧠</span>Systems</button>
+      <button class="mtab"    data-m="datastore" onclick="sw('datastore',this)"><span class="mi">💾</span>DataStore</button>
+      <button class="mtab"    data-m="animation" onclick="sw('animation',this)"><span class="mi">🎬</span>Animations</button>
+      <button class="mtab"    data-m="debug"     onclick="sw('debug',this)"><span class="mi">🔍</span>Debug</button>
+      <button class="mtab"    data-m="module"    onclick="sw('module',this)"><span class="mi">📦</span>Modules</button>
+      <button class="mtab"    data-m="gamepass"  onclick="sw('gamepass',this)"><span class="mi">💎</span>Gamepass</button>
+    </div>
+    <div class="br">
+      <div class="mchip">claude-sonnet-4</div>
+      <button class="clr" onclick="clearChat()">Clear</button>
+      <button class="launch-btn" style="font-size:10px;padding:5px 12px" onclick="goHome()">← Home</button>
+    </div>
+  </div>
+  <div class="bbody">
+    <div class="bsb">
+      <div class="sbh" id="sbh">GUI Builder</div>
+      <div class="sbs">
+        <div class="sbsec">Quality</div>
+        <div class="cxrow">
+          <button class="cxb on" id="cxs" onclick="setCx('simple')">Clean</button>
+          <button class="cxb" id="cxh" onclick="setCx('hard')">AAA</button>
+        </div>
+        <div class="sbdiv"></div>
+        <div class="sb-share" onclick="openModal()">
+          <span style="font-size:14px">🚀</span>
+          <span class="sb-share-txt">Share Creation</span>
+        </div>
+        <a class="sb-tt" href="https://www.tiktok.com/@zelqorix01" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.86 4.86 0 0 1-1.01-.07z"/></svg>
+          <span class="sb-tt-txt">@zelqorix01</span>
+        </a>
+        <div class="sbdiv"></div>
+        <div class="sbsec">Quick Prompts</div>
+        <div id="sbp"></div>
+      </div>
+    </div>
+    <div class="bchat">
+      <div class="cout" id="co"></div>
+      <div class="ciw">
+        <div class="ibox">
+          <textarea id="mi" rows="1" placeholder="Describe what to build, or paste broken code to fix..."></textarea>
+          <button class="isend" id="isend" onclick="send()">Generate ⚡</button>
+        </div>
+        <div class="mods">
+          <span class="mod" onclick="amod('with UIGradient rainbow gradient buttons')">+Gradients</span>
+          <span class="mod" onclick="amod('stud texture ImageLabel background')">+Stud Texture</span>
+          <span class="mod" onclick="amod('spring physics bounce animations')">+Spring Anims</span>
+          <span class="mod" onclick="amod('glassmorphism dark theme')">+Glass</span>
+          <span class="mod" onclick="amod('glow effects with ImageLabel')">+Glow FX</span>
+          <span class="mod" onclick="amod('mobile friendly')">+Mobile</span>
+          <span class="mod" onclick="amod('save with DataStore')">+Save Data</span>
+          <span class="mod" onclick="amod('multiplayer RemoteEvents separate scripts')">+Multiplayer</span>
+          <span class="mod" onclick="amod('with sound effects')">+Sounds</span>
+          <span class="mod" onclick="amod('heavily optimized')">+Optimized</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ LIBRARY ═══════ -->
+<div id="pl" class="pg">
+  <div class="lib-top">
+    <div class="lib-title">📚 Saved Library</div>
+    <div class="lib-count" id="lib-count">0 scripts</div>
+    <button class="lib-clear" onclick="clearLib()">Clear All</button>
+    <button class="launch-btn" style="font-size:10px;padding:5px 12px;margin-left:8px" onclick="goBuilder()">← Builder</button>
+  </div>
+  <div id="lib-body" class="lib-grid"></div>
+</div>
+
+<!-- ═══════ COMMUNITY SHOWCASE ═══════ -->
+<div id="ps" class="pg">
+  <div class="cs-wrap">
+    <div class="cs-hero">
+      <div style="max-width:1100px;margin:0 auto">
+        <div class="cs-title">Community <em>Showcase</em> 🚀</div>
+        <div class="cs-sub">See what Roblox developers built with RbxCraft·AI. Share your own creation and inspire others!</div>
+        <button class="cs-share-btn" onclick="openModal()">🚀 Share Your Creation</button>
+        <div class="cs-stats">
+          <div class="cs-stat"><span class="cs-stat-num" id="cs-count">0</span>&nbsp;creations shared</div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-filters" id="cs-filters">
+      <button class="cs-filter on" data-f="all" onclick="filterShowcase('all',this)">All</button>
+      <button class="cs-filter" data-f="gui" onclick="filterShowcase('gui',this)">🖥️ GUI</button>
+      <button class="cs-filter" data-f="script" onclick="filterShowcase('script',this)">⚙️ Scripts</button>
+      <button class="cs-filter" data-f="system" onclick="filterShowcase('system',this)">🧠 Systems</button>
+      <button class="cs-filter" data-f="datastore" onclick="filterShowcase('datastore',this)">💾 DataStore</button>
+      <button class="cs-filter" data-f="animation" onclick="filterShowcase('animation',this)">🎬 Animations</button>
+      <button class="cs-filter" data-f="gamepass" onclick="filterShowcase('gamepass',this)">💎 Gamepass</button>
+    </div>
+    <div class="cs-grid" id="cs-grid"></div>
+  </div>
+</div>
+
+<!-- ═══════ FEEDBACK ═══════ -->
+<div id="pf" class="pg">
+  <div class="fb-wrap">
+    <div class="fb-inner">
+      <div class="fb-title">Leave <em>Feedback</em></div>
+      <div class="fb-sub">Help make RbxCraft·AI the best Roblox tool ever!</div>
+      <div class="fb-success" id="fb-success">
+        <div class="fb-success-icon">🎉</div>
+        <div class="fb-success-title">Thanks so much!</div>
+        <div class="fb-success-sub">We read every response and use it to improve RbxCraft·AI. You rock! 🚀</div>
+        <button style="margin-top:18px;font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;background:var(--g);color:#04040a;padding:10px 24px;border-radius:8px;transition:all .15s" onclick="resetFb()">Submit Another</button>
+      </div>
+      <div id="fb-form">
+        <div class="stars-wrap">
+          <div class="stars-lbl">How would you rate RbxCraft·AI?</div>
+          <div class="stars" id="stars">
+            <span class="star" data-v="1" onclick="setStar(1)" onmouseover="hoverStar(1)" onmouseout="unhoverStar()">★</span>
+            <span class="star" data-v="2" onclick="setStar(2)" onmouseover="hoverStar(2)" onmouseout="unhoverStar()">★</span>
+            <span class="star" data-v="3" onclick="setStar(3)" onmouseover="hoverStar(3)" onmouseout="unhoverStar()">★</span>
+            <span class="star" data-v="4" onclick="setStar(4)" onmouseover="hoverStar(4)" onmouseout="unhoverStar()">★</span>
+            <span class="star" data-v="5" onclick="setStar(5)" onmouseover="hoverStar(5)" onmouseout="unhoverStar()">★</span>
+          </div>
+        </div>
+        <div class="fb-field">
+          <label class="fb-label">Category</label>
+          <select class="fb-select" id="fb-cat">
+            <option value="">Select...</option>
+            <option value="general">⭐ General</option>
+            <option value="feature">💡 Feature Request</option>
+            <option value="bug">🐛 Bug Report</option>
+            <option value="code">💻 Code Quality</option>
+            <option value="ui">🎨 UI / Design</option>
+            <option value="praise">🚀 Praise</option>
+          </select>
+        </div>
+        <div class="fb-field">
+          <label class="fb-label">Your Name (optional)</label>
+          <input type="text" class="fb-name" id="fb-name" placeholder="Anonymous">
+        </div>
+        <div class="fb-field">
+          <label class="fb-label">Your Message</label>
+          <textarea class="fb-textarea" id="fb-msg" placeholder="What do you think? What would make it better?"></textarea>
+        </div>
+        <button class="fb-submit" onclick="submitFb()">Send Feedback ⭐</button>
+      </div>
+      <div class="fb-wall">
+        <div class="fb-wall-title">Community Feedback</div>
+        <div id="fb-wall"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   AI SYSTEM PROMPTS
+═══════════════════════════════════════════ */
+const SYS={
+gui:(cx)=>`You are the world's best Roblox GUI developer. Create interfaces that look like they belong in top Roblox games.
+
+QUALITY: ${cx==='hard'?`AAA ULTRA — Use these exact Roblox techniques:
+
+GRADIENT BUTTONS:
+  local grad = Instance.new("UIGradient")
+  grad.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 107, 53)),
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 0, 80)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(150, 0, 200))
+  })
+  grad.Rotation = 45
+  grad.Parent = button
+
+STUD TEXTURE BG:
+  local studBg = Instance.new("ImageLabel")
+  studBg.Image = "rbxassetid://6372755229"
+  studBg.ScaleType = Enum.ScaleType.Tile
+  studBg.TileSize = UDim2.new(0, 50, 0, 50)
+  studBg.ImageTransparency = 0.75
+  studBg.BackgroundTransparency = 1
+  studBg.Size = UDim2.new(1,0,1,0)
+  studBg.ZIndex = 0
+
+GLOW with ImageLabel:
+  local glow = Instance.new("ImageLabel")
+  glow.Image = "rbxassetid://5028857084"
+  glow.Size = UDim2.new(1.5,0,1.5,0)
+  glow.Position = UDim2.new(-0.25,0,-0.25,0)
+  glow.BackgroundTransparency = 1
+  glow.ImageTransparency = 0.4
+  glow.ImageColor3 = Color3.fromRGB(0,255,170)
+
+SPRING ANIMATIONS:
+  TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
+  TweenInfo.new(0.5, Enum.EasingStyle.Elastic, Enum.EasingDirection.Out)
+
+DARK CARD with gradient:
+  frame.BackgroundColor3 = Color3.fromRGB(12,12,22)
+  local g = Instance.new("UIGradient")
+  g.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(22,22,38)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(8,8,16))
+  })
+  g.Rotation = 135
+  g.Parent = frame`
+  :'CLEAN — Beautiful GUI with UIGradient, UICorner, UIStroke, smooth tweens, good colors.'}
+
+RULES:
+1. COMPLETE CODE — every line written, zero placeholders
+2. First line: -- ✅ PLACE IN: StarterPlayerScripts > New LocalScript → "GuiName"
+3. Instance.new() for everything | game:GetService() always
+4. task.wait() never wait()
+5. UICorner on all frames | TweenService on all buttons
+6. Parent ScreenGui to Players.LocalPlayer:WaitForChild("PlayerGui")
+
+FORMAT: ✅ What was built | 📁 Placement | COMPLETE code`,
+
+script:(cx)=>`You are an expert Roblox scripter. Write COMPLETE scripts — each in its own SEPARATE code block.
+
+QUALITY: ${cx==='hard'?'ADVANCED — full server+client split, RemoteEvents, server validation.':'CLEAN — readable, fully working.'}
+
+CRITICAL: Each script gets its OWN separate lua code block with its own placement comment on line 1. NEVER combine multiple scripts into one block.
+
+RULES: task.wait() always | game:GetService() always | Server→ServerScriptService | LocalScript→StarterPlayerScripts | RemoteEvents→ReplicatedStorage>Remotes | pcall() on DataStore | server validates all client data
+
+FORMAT: ✅ Built | 📁 File list | Each script in its own code block`,
+
+system:(cx)=>`You are a senior Roblox architect. Write COMPLETE game systems — each file in its own SEPARATE code block.
+
+QUALITY: ${cx==='hard'?'ADVANCED — ModuleScript + server + client, RemoteEvents, DataStore.':'CLEAN — 2-3 separate files.'}
+
+CRITICAL: Every file gets its own code block with placement comment.
+
+RULES: ModuleScript returns table | RemoteEvents in ReplicatedStorage | server validates all | task.wait() always
+
+FORMAT: ✅ Overview | 📁 File list | Each file in its own code block`,
+
+datastore:(cx)=>`You are a DataStore expert. Write COMPLETE save systems — separate files.
+
+QUALITY: ${cx==='hard'?'ADVANCED — retry, auto-save, BindToClose, cache.':'CLEAN — pcall, retry 3x, auto-save, defaults.'}
+
+RULES: pcall every DataStore call | retry 3x with task.wait(2) | auto-save task.spawn loop | PlayerRemoving+BindToClose saves | cache by UserId | merge defaults
+
+FORMAT: ✅ Built | 📁 Files | Each file in its own code block`,
+
+animation:(cx)=>`You are a Roblox VFX expert. Write COMPLETE animation systems.
+
+QUALITY: ${cx==='hard'?'AAA — chained tweens, camera shake, BlurEffect, ColorCorrectionEffect, particles.':'CLEAN — smooth tweens, good EasingStyle.'}
+
+RULES: complete animation functions | TweenService:Create with TweenInfo | reusable functions | task.wait() always
+
+FORMAT: ✅ What was created | 📁 Placement | Complete code`,
+
+debug:(cx)=>`You are an elite debugger. Fix code completely — each fixed file in its own code block.
+
+DEPTH: ${cx==='hard'?'FULL AUDIT — fix all bugs, modernize all APIs, optimize, fix architecture.':'FIX — find all bugs, explain, return complete fixed code.'}
+
+RULES: return complete code | first line: -- ✅ PLACE IN: [location] | mark every change: -- 🔧 FIXED: [what and why] | replace all: wait()→task.wait() game.X→game:GetService("X") :remove()→:Destroy() | add pcall() | fix client-server split
+
+FORMAT: 🐛 Bugs found | 📁 Placement | Each fixed file in its own code block`,
+
+module:(cx)=>`You are a ModuleScript expert. Write COMPLETE reusable APIs.
+
+QUALITY: ${cx==='hard'?'ADVANCED — constructor, events, type checking, Destroy.':'CLEAN — useful methods, fully written.'}
+
+RULES: every method fully written | local Module = {} ... return Module | task.wait() always | usage example as separate code block
+
+FORMAT: ✅ Module + API list | 📁 Placement | Module code block | Example code block`,
+
+gamepass:(cx)=>`You are a monetization expert. Write COMPLETE gamepass systems — separate files.
+
+QUALITY: ${cx==='hard'?'ADVANCED — multi-gamepass, products, ProcessReceipt, DataStore persistence.':'CLEAN — gamepass check + product handler, server-side.'}
+
+RULES: every handler written | server-side only | UserOwnsGamePassAsync in pcall() | ProcessReceipt returns PurchaseGranted | -- REPLACE 000000 WITH YOUR REAL GAMEPASS ID
+
+FORMAT: ✅ Built | 📁 Files | 📝 Where to get IDs | Each file in its own code block`
+}
+
+/* ═══ MODE CONFIGS ═══ */
+const MODES={
+  gui:{label:'GUI Builder',icon:'🖥️',desc:'AAA-quality Roblox GUIs with gradients, textures & spring animations.',
+    ex:['Gradient button shop GUI','Stud texture menu','Animated RPG HUD','Glassmorphism inventory'],
+    prompts:['Shop GUI UIGradient rainbow buttons like top Roblox games','Main menu with stud texture bg and glow gradient buttons','Health mana XP HUD gradient bars smooth animations','Inventory grid dark glassmorphism cards','Settings GUI sliders toggles keybinds','Notification pop-up system gradient slide-in','Loading screen gradient progress bar particles','Kill feed gradient name colors','Leaderboard gold silver bronze gradient ranks','Admin panel player list gradient buttons']},
+  script:{label:'Script Maker',icon:'⚙️',desc:'Multiple separate scripts — each in its own file.',
+    ex:['Double jump','Kill for coins','Admin commands','Round system'],
+    prompts:['Double jump server validated animation','Kill coins server client separate files','Shooting tool server client split','Round-based game teams all separate files','Admin kick ban tp speed server client','Respawn countdown GUI separate files','Proximity prompt chest separate scripts','Anti-cheat server side speed check','NPC follow attack server script','Checkpoint save respawn all files separate']},
+  system:{label:'Game Builder',icon:'🧠',desc:'Full game systems — every file separate.',
+    ex:['Economy','XP leveling','Combat','Pet system'],
+    prompts:['Economy coins gems shop all 3 files','XP leveling GUI notification module server client','Combat hitbox cooldowns server client','Kill streak rewards all files','Team round scoreboard all files','Pet system stats leveling all files','Quest tracker objectives all files','Leaderboard DataStore all files','VIP gamepass perks all files','Day night cycle events all files']},
+  datastore:{label:'DataStore',icon:'💾',desc:'Bulletproof save/load — separate files.',
+    ex:['Save coins XP','Profile','Inventory','Ban system'],
+    prompts:['Save coins XP level defaults module server','Inventory 30 slots module server','Settings per player separate files','Ban system expiry reason','Multi-currency coins gems tokens','Daily reward streak','Full profile all stats','Ordered leaderboard top 100','Purchase history log','Auto-save 60s full system']},
+  animation:{label:'Animations',icon:'🎬',desc:'AAA VFX — spring tweens, particles, screen effects.',
+    ex:['Spring GUI','Screen shake','Particle burst','Cinematic'],
+    prompts:['Spring elastic GUI open close','Screen shake camera hit explosion','Button hover bounce glow','Coin collect sparkle particles','Level up flash celebration','Health bar gradient color','Typewriter text reveal','Spinning loading indicator','Firework multi-color particles','Cinematic camera cutscene']},
+  debug:{label:'Debug & Fix',icon:'🔍',desc:'Paste broken code — complete fixed files returned.',
+    ex:['Fix LocalScript','Optimize','Fix DataStore','Memory leaks'],
+    prompts:['Fix all bugs in my script','Optimize for performance','Replace deprecated APIs','Add error handling pcall','Fix RemoteEvent architecture','Debug GUI not opening','Fix DataStore not saving','Refactor into ModuleScript','Fix memory leaks','Explain and fix all bugs']},
+  module:{label:'ModuleScript',icon:'📦',desc:'Complete reusable APIs with examples.',
+    ex:['Utility','Player API','Combat','UI helpers'],
+    prompts:['Utility round lerp clamp tween','Player data manager events','Combat damage crit status','UI helper tween open close','Timer pause resume reset','Queue FIFO system','State machine','Custom event emitter','Object pool performance','Network RemoteEvent wrapper']},
+  gamepass:{label:'Gamepass',icon:'💎',desc:'Complete monetization — separate files.',
+    ex:['VIP','2x coins','Full shop','ProcessReceipt'],
+    prompts:['VIP perks speed jump look separate','2x coins product handler','Shop 4 gamepass buttons','Multiple gamepasses perks','Product coin bundles 100 500 2000','ProcessReceipt all products','Gamepass DataStore persistence','Auto-apply perks on spawn','Free VIP admin list','Full monetization shop UI']}
+}
+
+/* ═══ STATE ═══ */
+let mode='gui', cx='simple', busy=false
+const hist={gui:[],script:[],system:[],datastore:[],animation:[],debug:[],module:[],gamepass:[]}
+let library=JSON.parse(localStorage.getItem('rbxcraft_lib')||'[]')
+let feedbacks=JSON.parse(localStorage.getItem('rbxcraft_fb')||'[]')
+let showcase=JSON.parse(localStorage.getItem('rbxcraft_sc')||'[]')
+let csFilter='all', starRating=0
+const TYPE_CFG={
+  gui:{label:'GUI',color:'var(--g)',bg:'rgba(0,255,170,.08)',border:'rgba(0,255,170,.2)'},
+  script:{label:'Script',color:'var(--b)',bg:'rgba(77,158,255,.08)',border:'rgba(77,158,255,.2)'},
+  system:{label:'System',color:'var(--p)',bg:'rgba(192,132,252,.08)',border:'rgba(192,132,252,.2)'},
+  datastore:{label:'DataStore',color:'var(--o)',bg:'rgba(255,140,66,.08)',border:'rgba(255,140,66,.2)'},
+  animation:{label:'Animation',color:'var(--pk)',bg:'rgba(244,114,182,.08)',border:'rgba(244,114,182,.2)'},
+  gamepass:{label:'Gamepass',color:'var(--r)',bg:'rgba(248,113,113,.08)',border:'rgba(248,113,113,.2)'},
+  other:{label:'Other',color:'var(--y)',bg:'rgba(251,191,36,.08)',border:'rgba(251,191,36,.2)'}
+}
+const AVATARBGS=['linear-gradient(135deg,#00ffaa,#4d9eff)','linear-gradient(135deg,#f472b6,#c084fc)','linear-gradient(135deg,#fbbf24,#f97316)','linear-gradient(135deg,#22d3ee,#4d9eff)','linear-gradient(135deg,#00ffaa,#c084fc)','linear-gradient(135deg,#f87171,#f472b6)']
+
+/* ═══ PLACEMENT BADGE ═══ */
+function pBadge(code){
+  const l=(code.split('\n')[0]||'').toLowerCase()
+  if(l.includes('serverscriptservice')&&!l.includes('module'))return{c:'pl-ss',t:'🟢 ServerScriptService'}
+  if(l.includes('starterplayerscripts'))return{c:'pl-sp',t:'🔵 StarterPlayerScripts'}
+  if(l.includes('startercharacterscripts'))return{c:'pl-sc',t:'🟣 StarterCharacterScripts'}
+  if(l.includes('replicatedstorage')&&(l.includes('module')||l.includes('system')))return{c:'pl-ms',t:'🩵 ReplicatedStorage'}
+  if(l.includes('replicatedstorage'))return{c:'pl-rs',t:'🟡 ReplicatedStorage'}
+  if(l.includes('startergui'))return{c:'pl-sg',t:'🩷 StarterGui'}
+  if(l.includes('modulescript')||l.includes('module'))return{c:'pl-ms',t:'🩵 ModuleScript'}
+  return null
+}
+
+/* ═══ NAV ═══ */
+function setNl(id){['nl0','nl1','nl2','nl3','nl4'].forEach(n=>document.getElementById(n).classList.remove('on'));document.getElementById(id).classList.add('on')}
+function showPg(id){
+  document.querySelectorAll('.pg').forEach(p=>{p.classList.remove('on');p.style.display='none'})
+  const p=document.getElementById(id)
+  p.classList.add('on')
+  p.style.display=['pb','pl','pf','ps'].includes(id)?'flex':'block'
+  window.scrollTo(0,0)
+}
+function goHome(){showPg('ph');setNl('nl0')}
+function goBuilder(){showPg('pb');setNl('nl1');document.getElementById('mi').focus()}
+function goShowcase(){showPg('ps');setNl('nl2');renderShowcase()}
+function goLib(){showPg('pl');setNl('nl3');renderLib()}
+function goFeedback(){showPg('pf');setNl('nl4');renderFbWall()}
+function launchMode(m){showPg('pb');setNl('nl1');const btn=document.querySelector('.mtab[data-m="'+m+'"]');if(btn)sw(m,btn);document.getElementById('mi').focus()}
+
+/* ═══ MODE ═══ */
+function sw(m,btn){
+  mode=m
+  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('on'));btn.classList.add('on')
+  document.getElementById('sbh').textContent=MODES[m].label
+  renderSidebar();renderChat();document.getElementById('mi').focus()
+}
+function setCx(c){
+  cx=c
+  document.getElementById('cxs').classList.toggle('on',c==='simple')
+  document.getElementById('cxh').classList.toggle('on',c==='hard')
+}
+
+/* ═══ SIDEBAR ═══ */
+function renderSidebar(){
+  const c=document.getElementById('sbp');c.innerHTML=''
+  MODES[mode].prompts.forEach(p=>{
+    const b=document.createElement('button');b.className='sbbtn';b.textContent=p
+    b.onclick=()=>{document.getElementById('mi').value=p;send()};c.appendChild(b)
+  })
+}
+
+/* ═══ CHAT ═══ */
+function renderChat(){
+  const co=document.getElementById('co');co.innerHTML=''
+  const h=hist[mode]
+  if(!h.length){renderEmpty(co);return}
+  h.forEach(item=>item.role==='user'?appendU(item.content,co,false):appendA(item.content,co,false))
+  co.scrollTop=co.scrollHeight
+}
+function renderEmpty(co){
+  const cfg=MODES[mode];const d=document.createElement('div');d.className='ewrap';d.id='ewrap'
+  d.innerHTML=`<div class="eico">${cfg.icon}</div><div class="eh">${cfg.label}</div><div class="ep">${cfg.desc}</div><div class="echips">${cfg.ex.map(e=>`<div class="echip">${e}</div>`).join('')}</div>`
+  d.querySelectorAll('.echip').forEach(c=>c.onclick=()=>{document.getElementById('mi').value=c.textContent;send()})
+  co.appendChild(d)
+}
+function clearChat(){hist[mode]=[];renderChat()}
+function rmEmpty(){const e=document.getElementById('ewrap');if(e)e.remove()}
+
+/* ═══ APPEND USER ═══ */
+function appendU(text,co,scroll=true){
+  const d=document.createElement('div');d.className='msgu';d.textContent=text
+  co.appendChild(d);if(scroll)co.scrollTop=co.scrollHeight
+}
+
+/* ═══ APPEND AI ═══ */
+function appendA(text,co,scroll=true){
+  const wrap=document.createElement('div');wrap.className='msga'
+  wrap.innerHTML=`<div class="albl"><span class="apl"></span>RbxCraft·AI</div>`
+  const parts=text.split(/(```(?:lua|luau)?\n[\s\S]*?```)/g)
+  let cc=0
+  parts.forEach(part=>{
+    const cm=part.match(/```(?:lua|luau)?\n([\s\S]*?)```/)
+    if(cm){
+      const code=cm[1]
+      const fl=code.split('\n')[0]||''
+      const rawName=fl.startsWith('--')?fl.replace(/^--\s*/,''):'Roblox Lua'
+      const displayName=rawName.replace(/✅\s*PLACE IN:\s*/i,'').trim()
+      const badge=pBadge(code)
+      const uid='u'+Math.random().toString(36).slice(2,8)
+      if(cc>0){
+        const sep=document.createElement('div');sep.className='script-sep'
+        sep.innerHTML=`<div class="script-sep-line"></div><div class="script-sep-txt">File ${cc+1}</div><div class="script-sep-line"></div>`
+        wrap.appendChild(sep)
+      }
+      cc++
+      const card=document.createElement('div');card.className='ccard'
+      card.innerHTML=`
+        <div class="chead">
+          <div class="mdts"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div>
+          <span class="ctype">LUA</span>
+          <span class="cname">${esc(displayName)}</span>
+          ${badge?`<span class="placement ${badge.c}">${badge.t}</span>`:''}
+          <div class="cacts">
+            <button class="act act-exp" data-uid="${uid}" data-code="${esc(code)}" onclick="toggleExp(this)">Explain</button>
+            <button class="act act-share" data-code="${esc(code)}" data-name="${esc(displayName)}" onclick="openModalWithCode(this)">Share</button>
+            <button class="act act-save" data-name="${esc(displayName)}" data-code="${esc(code)}" onclick="saveScript(this)">Save</button>
+            <button class="act act-dl" data-name="${esc(displayName)}" data-code="${esc(code)}" onclick="dlScript(this)">DL</button>
+            <button class="act" onclick="cpCode(this)">Copy</button>
+          </div>
+        </div>
+        <div class="explain-panel" id="ep-${uid}"></div>
+        <pre><code class="language-lua">${esc(code)}</code></pre>`
+      wrap.appendChild(card);hljs.highlightElement(card.querySelector('code'))
+    } else if(part.trim()){
+      const td=document.createElement('div');td.className='atxt'
+      td.innerHTML=part.trim()
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        .replace(/\n/g,'<br>')
+        .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+        .replace(/`([^`]+)`/g,'<code>$1</code>')
+        .replace(/✅/g,'<span style="color:var(--g)">✅</span>')
+        .replace(/📁/g,'<span style="color:var(--y)">📁</span>')
+        .replace(/🐛/g,'<span style="color:var(--r)">🐛</span>')
+        .replace(/🔧/g,'<span style="color:var(--o)">🔧</span>')
+        .replace(/📝/g,'<span style="color:var(--p)">📝</span>')
+        .replace(/•/g,'<span style="color:var(--b)">•</span>')
+      wrap.appendChild(td)
+    }
+  })
+  co.appendChild(wrap);if(scroll)co.scrollTop=co.scrollHeight
+}
+
+/* ═══ EXPLAIN ═══ */
+async function toggleExp(btn){
+  const uid=btn.dataset.uid,panel=document.getElementById('ep-'+uid)
+  if(panel.classList.contains('open')){panel.classList.remove('open');btn.textContent='Explain';return}
+  btn.textContent='...'
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,messages:[{role:'user',content:`Explain this Roblox Lua code simply for a beginner. What it does, how it works, key concepts. Be concise.\n\n\`\`\`lua\n${btn.dataset.code}\n\`\`\``}]})})
+    const data=await res.json()
+    panel.innerHTML=`<div class="exp-head">📖 Explanation</div>${(data.content?.map(b=>b.text||'').join('')||'Error.').replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/`([^`]+)`/g,'<code>$1</code>')}`
+    panel.classList.add('open');btn.textContent='Hide'
+  }catch(e){panel.innerHTML='<div class="exp-head">Error</div>'+e.message;panel.classList.add('open');btn.textContent='Explain'}
+}
+
+/* ═══ SAVE / DL / COPY ═══ */
+function saveScript(btn){
+  const code=btn.dataset.code,name=btn.dataset.name||'Script'
+  if(library.find(l=>l.code===code)){showToast('Already saved!');return}
+  library.unshift({name,code,date:new Date().toLocaleDateString(),mode})
+  localStorage.setItem('rbxcraft_lib',JSON.stringify(library))
+  btn.textContent='Saved ✓';btn.classList.add('saved');showToast('Saved to library!')
+}
+function dlScript(btn){
+  const code=btn.dataset.code,name=(btn.dataset.name||'script').replace(/[^a-z0-9_\- ]/gi,'_').replace(/\s+/g,'_')
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([code],{type:'text/plain'}));a.download=name+'.lua';a.click()
+  showToast('Downloaded '+name+'.lua')
+}
+function cpCode(btn){
+  navigator.clipboard.writeText(btn.closest('.ccard').querySelector('code').textContent).then(()=>{
+    btn.textContent='Copied!';btn.classList.add('done');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('done')},2000)
+  })
+}
+
+/* ═══ SEND ═══ */
+async function send(){
+  if(busy)return
+  const inp=document.getElementById('mi'),prompt=inp.value.trim()
+  if(!prompt)return
+  busy=true;document.getElementById('isend').disabled=true
+  const co=document.getElementById('co')
+  rmEmpty()
+  hist[mode].push({role:'user',content:prompt})
+  appendU(prompt,co)
+  inp.value='';inp.style.height='auto'
+  const ld=document.createElement('div');ld.className='loading'
+  ld.innerHTML=`<div class="ld"><span></span><span></span><span></span></div><div class="ldt">Building ${MODES[mode].label.toLowerCase()}${cx==='hard'?' (AAA quality)':''} — writing complete code...</div>`
+  co.appendChild(ld);co.scrollTop=co.scrollHeight
+  try{
+    const msgs=hist[mode].slice(0,-1).map(h=>({role:h.role,content:h.content}))
+    msgs.push({role:'user',content:prompt})
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:8000,system:SYS[mode](cx),messages:msgs})})
+    const data=await res.json()
+    ld.remove()
+    if(data.error)throw new Error(data.error.message)
+    const aiText=data.content?.map(b=>b.text||'').join('')||'No response.'
+    hist[mode].push({role:'assistant',content:aiText})
+    appendA(aiText,co)
+  }catch(e){
+    ld.remove()
+    const err=document.createElement('div');err.className='atxt';err.style.cssText='border-left-color:rgba(248,113,113,.5);color:var(--r)';err.textContent='⚠ Error: '+e.message
+    co.appendChild(err);co.scrollTop=co.scrollHeight
+  }
+  busy=false;document.getElementById('isend').disabled=false;inp.focus()
+}
+
+/* ═══ LIBRARY ═══ */
+function renderLib(){
+  const body=document.getElementById('lib-body')
+  document.getElementById('lib-count').textContent=library.length+' script'+(library.length!==1?'s':'')
+  if(!library.length){body.innerHTML=`<div class="lib-empty"><div class="lib-empty-icon">📚</div><div class="lib-empty-txt">No saved scripts yet. Generate code and click Save.</div></div>`;return}
+  body.innerHTML=''
+  library.forEach((item,idx)=>{
+    const uid='li'+idx;const div=document.createElement('div');div.className='lib-item'
+    div.innerHTML=`
+      <div class="lib-ihead" onclick="tlLib('${uid}')">
+        <span class="lib-iname">${esc(item.name)}</span>
+        <span style="font-family:var(--FM);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px">${item.mode||''}</span>
+        <span class="lib-idate">${item.date}</span>
+        <div style="display:flex;gap:4px;margin-left:auto">
+          <button style="font-family:var(--FM);font-size:9px;color:var(--c);border:1px solid rgba(34,211,238,.2);padding:2px 7px;border-radius:20px;transition:all .12s" onclick="dlLib(event,${idx})">DL</button>
+          <button style="font-family:var(--FM);font-size:9px;color:var(--m2);border:1px solid rgba(255,255,255,.1);padding:2px 7px;border-radius:20px;transition:all .12s" onclick="cpLib(event,${idx})">Copy</button>
+          <button style="font-family:var(--FM);font-size:9px;color:var(--r);border:1px solid rgba(248,113,113,.2);padding:2px 7px;border-radius:20px;transition:all .12s" onclick="delLib(event,${idx})">Del</button>
+        </div>
+      </div>
+      <div class="lib-code" id="${uid}"><pre><code class="language-lua">${esc(item.code)}</code></pre></div>`
+    body.appendChild(div);hljs.highlightElement(div.querySelector('code'))
+  })
+}
+function tlLib(uid){document.getElementById(uid).classList.toggle('open')}
+function delLib(e,idx){e.stopPropagation();library.splice(idx,1);localStorage.setItem('rbxcraft_lib',JSON.stringify(library));renderLib();showToast('Removed')}
+function dlLib(e,idx){e.stopPropagation();const i=library[idx];const n=(i.name||'script').replace(/[^a-z0-9_\- ]/gi,'_').replace(/\s+/g,'_');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([i.code],{type:'text/plain'}));a.download=n+'.lua';a.click();showToast('Downloaded!')}
+function cpLib(e,idx){e.stopPropagation();navigator.clipboard.writeText(library[idx].code).then(()=>showToast('Copied!'))}
+function clearLib(){if(!confirm('Clear all saved scripts?'))return;library=[];localStorage.setItem('rbxcraft_lib','[]');renderLib();showToast('Cleared')}
+
+/* ═══ SHARE MODAL ═══ */
+function openModal(){
+  document.getElementById('share-modal').classList.add('open')
+  document.getElementById('sh-name').focus()
+}
+function openModalWithCode(btn){
+  openModal()
+  document.getElementById('sh-code').value=btn.dataset.code||''
+  const name=btn.dataset.name||''
+  if(name)document.getElementById('sh-title').value=name
+}
+function closeModal(){document.getElementById('share-modal').classList.remove('open')}
+document.getElementById('share-modal').addEventListener('click',e=>{if(e.target===document.getElementById('share-modal'))closeModal()})
+
+function submitShare(){
+  const name=document.getElementById('sh-name').value.trim()
+  const title=document.getElementById('sh-title').value.trim()
+  const type=document.getElementById('sh-type').value
+  const desc=document.getElementById('sh-desc').value.trim()
+  const code=document.getElementById('sh-code').value.trim()
+  if(!name){showToast('Enter your name!');return}
+  if(!title){showToast('Enter a project title!');return}
+  if(!type){showToast('Select a type!');return}
+  if(!desc){showToast('Write a description!');return}
+  if(!code){showToast('Paste your code!');return}
+  const entry={
+    id:'sc'+Date.now(),name,title,type,desc,code,
+    date:new Date().toLocaleDateString(),
+    likes:0,liked:false,
+    avatarBg:AVATARBGS[Math.floor(Math.random()*AVATARBGS.length)]
+  }
+  showcase.unshift(entry)
+  localStorage.setItem('rbxcraft_sc',JSON.stringify(showcase))
+  // reset
+  ;['sh-name','sh-title','sh-type','sh-desc','sh-code'].forEach(id=>document.getElementById(id).value='')
+  closeModal()
+  showToast('🚀 Shared with the community!')
+  if(document.getElementById('ps').classList.contains('on'))renderShowcase()
+}
+
+/* ═══ SHOWCASE ═══ */
+function filterShowcase(f,btn){
+  csFilter=f
+  document.querySelectorAll('.cs-filter').forEach(b=>b.classList.remove('on'));btn.classList.add('on')
+  renderShowcase()
+}
+function renderShowcase(){
+  const grid=document.getElementById('cs-grid')
+  const filtered=csFilter==='all'?showcase:showcase.filter(s=>s.type===csFilter)
+  document.getElementById('cs-count').textContent=showcase.length
+  if(!filtered.length){
+    grid.innerHTML=`<div class="cs-empty"><div class="cs-empty-icon">🚀</div><div class="cs-empty-txt">No ${csFilter==='all'?'':csFilter+' '}creations yet.<br>Be the first to share!</div></div>`
+    return
+  }
+  grid.innerHTML=''
+  filtered.forEach(item=>{
+    const tc=TYPE_CFG[item.type]||TYPE_CFG.other
+    const initials=(item.name||'?').split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase()
+    const card=document.createElement('div');card.className='sc-card'
+    const codePreview=item.code?item.code.substring(0,400):'-- No code'
+    card.innerHTML=`
+      <div class="sc-card-top">
+        <div class="sc-card-header">
+          <div class="sc-avatar" style="background:${item.avatarBg||'linear-gradient(135deg,#00ffaa,#4d9eff)'};color:#04040a">${esc(initials)}</div>
+          <div class="sc-card-info">
+            <div class="sc-card-title">${esc(item.title)}</div>
+            <div class="sc-card-author">by ${esc(item.name)}</div>
+          </div>
+          <div class="sc-card-type" style="background:${tc.bg};color:${tc.color};border:1px solid ${tc.border}">${tc.label}</div>
+        </div>
+        <div class="sc-card-desc">${esc(item.desc)}</div>
+      </div>
+      <div class="sc-card-code"><pre><code class="language-lua">${esc(codePreview+(item.code&&item.code.length>400?'\n-- ... (copy to see full code)':''))}</code></pre></div>
+      <div class="sc-card-footer">
+        <span class="sc-card-date">${item.date}</span>
+        <button class="sc-like ${item.liked?'liked':''}" onclick="likeItem('${item.id}',this)">♥ ${item.likes}</button>
+        <button class="sc-copy" onclick="cpShowcase('${item.id}',this)">Copy Code</button>
+      </div>`
+    grid.appendChild(card)
+    hljs.highlightElement(card.querySelector('code'))
+  })
+}
+function likeItem(id,btn){
+  const item=showcase.find(s=>s.id===id);if(!item)return
+  if(item.liked){item.liked=false;item.likes=Math.max(0,item.likes-1)}
+  else{item.liked=true;item.likes=(item.likes||0)+1}
+  localStorage.setItem('rbxcraft_sc',JSON.stringify(showcase))
+  btn.textContent='♥ '+item.likes;btn.classList.toggle('liked',item.liked)
+}
+function cpShowcase(id,btn){
+  const item=showcase.find(s=>s.id===id);if(!item)return
+  navigator.clipboard.writeText(item.code).then(()=>{
+    btn.textContent='Copied!';btn.classList.add('done');setTimeout(()=>{btn.textContent='Copy Code';btn.classList.remove('done')},2000)
+  })
+}
+
+/* ═══ FEEDBACK ═══ */
+function setStar(v){starRating=v;document.querySelectorAll('.star').forEach(s=>s.classList.toggle('lit',parseInt(s.dataset.v)<=v))}
+function hoverStar(v){document.querySelectorAll('.star').forEach(s=>s.style.color=parseInt(s.dataset.v)<=v?'var(--y)':'rgba(255,255,255,.1)')}
+function unhoverStar(){document.querySelectorAll('.star').forEach(s=>s.style.color=parseInt(s.dataset.v)<=starRating?'var(--y)':'rgba(255,255,255,.1)')}
+function submitFb(){
+  if(!starRating){showToast('Please pick a star rating!');return}
+  const msg=document.getElementById('fb-msg').value.trim()
+  if(!msg){showToast('Please write a message!');return}
+  const entry={stars:starRating,cat:document.getElementById('fb-cat').value||'general',name:document.getElementById('fb-name').value.trim()||'Anonymous',msg,date:new Date().toLocaleDateString()}
+  feedbacks.unshift(entry);localStorage.setItem('rbxcraft_fb',JSON.stringify(feedbacks))
+  document.getElementById('fb-form').style.display='none';document.getElementById('fb-success').classList.add('on');renderFbWall()
+}
+function resetFb(){
+  starRating=0;document.querySelectorAll('.star').forEach(s=>s.classList.remove('lit'))
+  document.getElementById('fb-msg').value='';document.getElementById('fb-name').value='';document.getElementById('fb-cat').value=''
+  document.getElementById('fb-form').style.display='block';document.getElementById('fb-success').classList.remove('on')
+}
+const CATL={'general':'⭐ General','feature':'💡 Feature','bug':'🐛 Bug','code':'💻 Code','ui':'🎨 UI','praise':'🚀 Praise'}
+function renderFbWall(){
+  const wall=document.getElementById('fb-wall')
+  if(!feedbacks.length){wall.innerHTML='<div class="fb-empty">No feedback yet — be first!</div>';return}
+  wall.innerHTML=feedbacks.map(f=>`<div class="fb-item"><div class="fb-item-top"><div class="fb-item-stars">${'★'.repeat(f.stars)}${'☆'.repeat(5-f.stars)}</div><div class="fb-item-name">${esc(f.name)}</div><span class="fb-item-cat">${CATL[f.cat]||f.cat}</span><div class="fb-item-date">${f.date}</div></div><div class="fb-item-txt">${esc(f.msg)}</div></div>`).join('')
+}
+
+/* ═══ UTILS ═══ */
+function amod(t){const i=document.getElementById('mi');i.value=(i.value.trim()+' '+t).trim();i.focus();az(i)}
+function az(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px'}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400)}
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+/* ═══ INIT ═══ */
+document.addEventListener('DOMContentLoaded',()=>{
+  const inp=document.getElementById('mi')
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}})
+  inp.addEventListener('input',function(){az(this)})
+  renderSidebar();renderChat();showPg('ph')
+})
+</script>
+</body>
+</html>
