@@ -629,14 +629,10 @@ a{text-decoration:none}
 <!-- BUILDER -->
 <div id="pb" class="pg">
   <!-- API KEY BAR -->
-  <div class="api-bar" id="api-bar">
-    <span class="api-bar-icon">🔑</span>
-    <div class="api-bar-info">
-      <div class="api-bar-title">Free API Key Required</div>
-      <div class="api-bar-sub">Get a FREE key at <a href="https://openrouter.ai/keys" target="_blank">openrouter.ai/keys</a> (no card!) — sign up with email, paste key here:</div>
-    </div>
-    <input type="password" class="api-input" id="api-key" placeholder="sk-or-v1-..." oninput="onKey(this.value)">
-    <div class="api-status no" id="api-status">No key</div>
+  <div id="api-bar" style="padding:7px 20px;border-bottom:1px solid rgba(0,255,170,.15);flex-shrink:0;display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(0,255,170,.05),rgba(77,158,255,.03))">
+    <span style="font-size:13px">⚡</span>
+    <span style="font-family:var(--FM);font-size:10px;letter-spacing:1px;color:var(--g)">RbxCraft·AI is ready — powered by OpenRouter · Free AI</span>
+    <div style="margin-left:auto;font-family:var(--FM);font-size:9px;color:var(--g);background:rgba(0,255,170,.08);border:1px solid rgba(0,255,170,.2);padding:3px 12px;border-radius:20px">✓ Connected</div>
   </div>
 
   <div class="bnav">
@@ -778,18 +774,11 @@ a{text-decoration:none}
 </div>
 
 <script>
+// ⬇️ LINE 1 — PASTE YOUR OPENROUTER KEY HERE ⬇️
+const _K='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' // <- replace this
 /* ════ API KEY ════ */
-function getKey(){return localStorage.getItem('rbxcraft_or_key')||''}
-function onKey(val){
-  val=val.trim()
-  if(val.length>10){
-    localStorage.setItem('rbxcraft_or_key',val)
-    const s=document.getElementById('api-status')
-    s.textContent='✓ Ready!';s.className='api-status ok'
-    document.getElementById('api-bar').style.borderBottomColor='rgba(0,255,170,.15)'
-    document.getElementById('api-bar').style.background='linear-gradient(135deg,rgba(0,255,170,.04),rgba(77,158,255,.03))'
-  }
-}
+function getKey(){return _K}
+function onKey(val){}
 
 /* ════ MODE CONFIGS ════ */
 const MODES={
@@ -966,7 +955,6 @@ async function toggleExp(btn){
   const uid=btn.dataset.uid,panel=document.getElementById('ep-'+uid)
   if(panel.classList.contains('open')){panel.classList.remove('open');btn.textContent='Explain';return}
   const key=getKey()
-  if(!key){showToast('⚠ Add your API key first!');return}
   btn.textContent='...'
   try{
     const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
@@ -1006,13 +994,6 @@ async function send(){
   const inp=document.getElementById('mi'),prompt=inp.value.trim()
   if(!prompt)return
   const key=getKey()
-  if(!key){
-    showToast('⚠ Paste your free key in the bar above first!')
-    document.getElementById('api-key').focus()
-    document.getElementById('api-key').style.borderColor='rgba(248,113,113,.5)'
-    setTimeout(()=>document.getElementById('api-key').style.borderColor='',1500)
-    return
-  }
   busy=true;document.getElementById('isend').disabled=true
   const co=document.getElementById('co')
   rmEmpty()
